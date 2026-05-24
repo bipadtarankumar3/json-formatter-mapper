@@ -8,7 +8,7 @@ const TreeItem = ({ name, value, depth = 0, filter = '' }) => {
   const isObject = value !== null && typeof value === 'object';
   const isArray = Array.isArray(value);
   const [isOpen, setIsOpen] = useState(depth < 2);
-  
+
   // Auto-expand if filter matches children
   useEffect(() => {
     if (filter && isObject) {
@@ -44,7 +44,7 @@ const TreeItem = ({ name, value, depth = 0, filter = '' }) => {
 
   return (
     <div className="select-none">
-      <div 
+      <div
         className={`flex items-center gap-2 py-1 px-2 rounded-lg transition-colors cursor-pointer hover:bg-white/5 ${depth === 0 ? 'mt-2' : ''}`}
         onClick={isObject ? toggleOpen : undefined}
         style={{ paddingLeft: `${depth * 20 + 8}px` }}
@@ -56,7 +56,7 @@ const TreeItem = ({ name, value, depth = 0, filter = '' }) => {
         ) : (
           <div className="w-4" />
         )}
-        
+
         <span className="flex items-center gap-2">
           {renderIcon()}
           <span className="font-mono text-sm font-bold text-white/70">{name}:</span>
@@ -67,7 +67,7 @@ const TreeItem = ({ name, value, depth = 0, filter = '' }) => {
             {typeof value === 'string' ? `"${value}"` : String(value)}
           </span>
         )}
-        
+
         {isObject && !isOpen && (
           <span className="text-xs text-muted/50 italic">
             {isArray ? `[${value.length}]` : `{${Object.keys(value).length}}`}
@@ -95,10 +95,12 @@ const TreeItem = ({ name, value, depth = 0, filter = '' }) => {
 
 export default function TreeViewer({ data, filter = '' }) {
   if (!data) return null;
-  
+
   return (
     <div className="w-full h-full overflow-y-auto custom-scrollbar p-4 bg-black/20 rounded-2xl border border-white/5">
       <TreeItem name="root" value={data} filter={filter} />
+
+
     </div>
   );
 }

@@ -17,15 +17,20 @@ export const metadata = {
     siteName: 'JsonFormatter',
     locale: 'en_US',
     type: 'website',
+    images: ['/logo.png'],
   },
   twitter: {
     card: 'summary_large_image',
     title: 'JSON Formatter & Mapper',
     description: 'Master your JSON data with style. The ultimate professional JSON tool.',
+    images: ['/logo.png'],
   },
   robots: {
     index: true,
     follow: true,
+  },
+  icons: {
+    icon: '/logo.png',
   },
 };
 

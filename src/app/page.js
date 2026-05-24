@@ -12,6 +12,7 @@ import {
 } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import TreeViewer from '@/components/TreeViewer';
+import Footer from '@/components/Footer';
 import { jsonToTypeScript, jsonToCsv, repairJson, evaluateJsonPath } from '@/lib/utils';
 
 // Premium Tooltip Component
@@ -451,21 +452,7 @@ export default function JsonFormatterMapper() {
 
         {/* Footer Terminal */}
 
-        {/* Footer Terminal */}
-        <footer className="mt-20 pt-16 border-t border-white/5 flex flex-col items-center gap-10">
-          <div className="flex gap-10 text-[10px] font-black tracking-[0.4em] text-muted uppercase">
-            <span>Protocol: encrypted</span>
-            <span>Link: stable</span>
-            <span>Kernel: v4.5.1</span>
-            <a href="https://tools.orbytara.com/services" className="hover:text-primary transition-colors">Services</a>
-          </div>
-          <div className="flex items-center gap-3">
-             <img src="/logo.png" alt="Logo" className="w-8 h-8 object-contain invert dark:invert-0 hue-rotate-180 dark:hue-rotate-0 contrast-125 dark:contrast-100 saturate-150 dark:saturate-100 rounded-xl" />
-          </div>
-          <p className="text-[10px] font-mono text-muted/30">
-            © 2026 NEXUS SYSTEMS // BUILT FOR THE FRONTIER
-          </p>
-        </footer>
+        <Footer />
       </div>
     </div>
   );

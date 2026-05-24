@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://jsonformatter.revoxera.com/sitemap.xml

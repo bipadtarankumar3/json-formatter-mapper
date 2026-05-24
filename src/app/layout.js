@@ -2,17 +2,19 @@ import './globals.css';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import { CodeXml, X, Mail, Zap, Brackets } from 'lucide-react';
+import { GoogleAnalytics } from '@next/third-parties/google';
+
 
 export const metadata = {
   title: 'JSON Formatter & Mapper | The Ultimate Online JSON Tool',
   description: 'Format, minify, and map your JSON effortlessly with our premium tool. Free, fast, and secure JSON transformation for developers.',
   keywords: 'json formatter, json beautifier, json minifier, json mapper, json to yaml, online json tool, json validator',
-  authors: [{ name: 'JsonMaster' }],
+  authors: [{ name: 'JsonFormatter' }],
   openGraph: {
     title: 'JSON Formatter & Mapper - Professional Data Tools',
     description: 'The most powerful online JSON tool with a premium glassmorphic interface. Master your data structure.',
-    url: 'https://jsonformatter.vercel.app',
-    siteName: 'JsonMaster',
+    url: 'https://jsonformatter.revoxera.com',
+    siteName: 'JsonFormatter',
     locale: 'en_US',
     type: 'website',
   },
@@ -71,6 +73,7 @@ export default function RootLayout({ children }) {
 
         <Footer />
 
+        <GoogleAnalytics gaId="G-MQEWLCWPRN" />
       </body>
     </html>
   );

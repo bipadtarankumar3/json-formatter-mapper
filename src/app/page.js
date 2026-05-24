@@ -275,7 +275,7 @@ export default function JsonFormatterMapper() {
             initial={{ y: 20, opacity: 0 }} animate={{ y: 0, opacity: 1 }}
             className="text-4xl md:text-6xl font-black tracking-tighter mb-4 leading-none bg-gradient-to-b from-white via-white to-white/20 bg-clip-text text-transparent"
           >
-            NEXUS <span className="text-primary drop-shadow-[0_0_15px_rgba(56,189,248,0.6)]">TRANSFORM</span>
+            JSON <span className="text-primary drop-shadow-[0_0_15px_rgba(56,189,248,0.6)]">FORMATTER</span>
           </motion.h1>
           <p className="text-base md:text-lg text-muted font-light tracking-wide max-w-2xl mx-auto leading-relaxed">
             Neural-linked JSON formatting, mapping, and extraction with <span className="text-white font-bold italic">zero latency</span>.

@@ -457,6 +457,10 @@ export default function JsonFormatterMapper() {
             <span>Protocol: encrypted</span>
             <span>Link: stable</span>
             <span>Kernel: v4.5.1</span>
+            <a href="https://tools.orbytara.com/services" className="hover:text-primary transition-colors">Services</a>
+          </div>
+          <div className="flex items-center gap-3">
+             <img src="/logo.png" alt="Logo" className="w-8 h-8 object-contain invert dark:invert-0 hue-rotate-180 dark:hue-rotate-0 contrast-125 dark:contrast-100 saturate-150 dark:saturate-100 rounded-xl" />
           </div>
           <p className="text-[10px] font-mono text-muted/30">
             © 2026 NEXUS SYSTEMS // BUILT FOR THE FRONTIER

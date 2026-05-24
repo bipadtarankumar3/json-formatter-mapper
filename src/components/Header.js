@@ -41,7 +41,7 @@ export default function Header() {
             <HelpCircle size={18} />
             <span>FAQ</span>
           </a>
-          <a href="https://tools.orbytara.com/services" onClick={() => setIsMenuOpen(false)} className="flex items-center gap-2 text-sm font-medium text-muted hover:text-white transition-colors relative after:absolute after:bottom-[-4px] after:left-0 after:w-0 hover:after:w-full after:h-[2px] after:bg-primary after:transition-all">
+          <a href="https://tools.Revoxera.com/services" onClick={() => setIsMenuOpen(false)} className="flex items-center gap-2 text-sm font-medium text-muted hover:text-white transition-colors relative after:absolute after:bottom-[-4px] after:left-0 after:w-0 hover:after:w-full after:h-[2px] after:bg-primary after:transition-all">
             <Sparkles size={18} />
             <span>Services</span>
           </a>

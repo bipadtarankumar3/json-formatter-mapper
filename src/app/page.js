@@ -12,7 +12,6 @@ import {
 } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import TreeViewer from '@/components/TreeViewer';
-import Footer from '@/components/Footer';
 import { jsonToTypeScript, jsonToCsv, repairJson, evaluateJsonPath } from '@/lib/utils';
 
 // Premium Tooltip Component
@@ -450,9 +449,6 @@ export default function JsonFormatterMapper() {
         </section>
 
 
-        {/* Footer Terminal */}
-
-        <Footer />
       </div>
     </div>
   );

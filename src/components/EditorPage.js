@@ -98,8 +98,13 @@ const EditableTreeItem = ({ name, value, path, depth = 0, onMutate }) => {
                 onKeyDown={(e) => e.key === 'Enter' && handleValueSave()}
                 className="bg-[#05080e] border border-primary/30 rounded px-1.5 py-0.5 text-white font-mono text-xs outline-none focus:border-primary"
                 autoFocus
+                suppressHydrationWarning={true}
               />
-              <button onClick={handleValueSave} className="p-0.5 text-success rounded hover:bg-white/10">
+              <button 
+                onClick={handleValueSave} 
+                className="p-0.5 text-success rounded hover:bg-white/10"
+                suppressHydrationWarning={true}
+              >
                 <Check size={12} />
               </button>
             </div>
@@ -131,6 +136,7 @@ const EditableTreeItem = ({ name, value, path, depth = 0, onMutate }) => {
               onClick={() => onMutate(path, 'add')}
               className="p-1 text-slate-400 hover:text-primary rounded hover:bg-white/10"
               title="Add property / element"
+              suppressHydrationWarning={true}
             >
               <Plus size={12} />
             </button>
@@ -139,6 +145,7 @@ const EditableTreeItem = ({ name, value, path, depth = 0, onMutate }) => {
             onClick={() => onMutate(path, 'delete')}
             className="p-1 text-slate-400 hover:text-red-400 rounded hover:bg-white/10"
             title="Delete node"
+            suppressHydrationWarning={true}
           >
             <Trash2 size={12} />
           </button>

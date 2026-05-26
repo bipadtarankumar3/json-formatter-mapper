@@ -51,6 +51,7 @@ export default function ViewerPage() {
             className="w-full bg-white/5 border border-white/10 rounded-xl py-2.5 pl-10 pr-4 text-xs font-mono outline-none focus:border-primary/50 transition-all focus:bg-white/10 text-white"
             value={filter}
             onChange={(e) => setFilter(e.target.value)}
+            suppressHydrationWarning={true}
           />
         </div>
         <div className="relative flex-1 group">
@@ -62,6 +63,7 @@ export default function ViewerPage() {
             value={jsonPath}
             onChange={(e) => setJsonPath(e.target.value)}
             onKeyDown={(e) => e.key === 'Enter' && handleEvaluatePath()}
+            suppressHydrationWarning={true}
           />
         </div>
       </div>
@@ -84,6 +86,7 @@ export default function ViewerPage() {
         onClick={handleEvaluatePath}
         className="p-5 rounded-3xl bg-primary text-black shadow-[0_0_20px_rgba(56,189,248,0.3)] hover:scale-105 transition-all"
         title="Execute JSONPath query"
+        suppressHydrationWarning={true}
       >
         <Command size={22} />
       </button>

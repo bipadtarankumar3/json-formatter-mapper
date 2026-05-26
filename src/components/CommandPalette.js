@@ -31,6 +31,17 @@ export default function CommandPalette({ isOpen, onClose }) {
   const [selectedIndex, setSelectedIndex] = useState(0);
   const router = useRouter();
   const inputRef = useRef(null);
+  const selectedRef = useRef(null);
+
+  // Smooth scroll selected item into view
+  useEffect(() => {
+    if (selectedRef.current) {
+      selectedRef.current.scrollIntoView({
+        behavior: 'smooth',
+        block: 'nearest',
+      });
+    }
+  }, [selectedIndex]);
 
   // Focus input when opened
   useEffect(() => {
@@ -121,12 +132,17 @@ export default function CommandPalette({ isOpen, onClose }) {
                 setSelectedIndex(0);
               }}
               className="bg-transparent text-white placeholder-slate-500 outline-none text-base w-full font-sans"
+              suppressHydrationWarning={true}
             />
             <div className="flex items-center gap-2">
               <span className="text-[10px] font-black text-slate-500 border border-white/10 px-2 py-1 rounded-md bg-white/5 uppercase">
                 ESC
               </span>
-              <button onClick={onClose} className="p-1 rounded-lg text-slate-400 hover:text-white bg-white/5 hover:bg-white/10">
+              <button 
+                onClick={onClose} 
+                className="p-1 rounded-lg text-slate-400 hover:text-white bg-white/5 hover:bg-white/10"
+                suppressHydrationWarning={true}
+              >
                 <X size={16} />
               </button>
             </div>
@@ -145,6 +161,7 @@ export default function CommandPalette({ isOpen, onClose }) {
                 return (
                   <div
                     key={item.href + item.name}
+                    ref={isSelected ? selectedRef : null}
                     onClick={() => {
                       router.push(item.href);
                       onClose();

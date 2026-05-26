@@ -131,6 +131,7 @@ export default function FormatterPage({ pageType = 'formatter' }) {
             className={`px-4 py-2 rounded-xl text-[10px] font-black uppercase transition-all ${
               indentSize === size ? 'bg-primary text-black' : 'text-slate-400 hover:text-white hover:bg-white/5'
             }`}
+            suppressHydrationWarning={true}
           >
             {size === 'tab' ? 'TABS' : `${size} SP`}
           </button>
@@ -141,6 +142,7 @@ export default function FormatterPage({ pageType = 'formatter' }) {
         onClick={() => handleFormat(jsonInput, indentSize)}
         title="Beautify JSON output"
         className="p-5 rounded-3xl bg-primary text-black shadow-[0_0_20px_rgba(56,189,248,0.3)] hover:scale-105 transition-all"
+        suppressHydrationWarning={true}
       >
         <Maximize2 size={22} />
       </button>
@@ -149,6 +151,7 @@ export default function FormatterPage({ pageType = 'formatter' }) {
         onClick={handleMinify}
         title="Minify JSON output"
         className="p-5 rounded-3xl bg-white/5 border border-white/10 text-white hover:bg-white/10 transition-all"
+        suppressHydrationWarning={true}
       >
         <Minimize2 size={22} />
       </button>
@@ -157,6 +160,7 @@ export default function FormatterPage({ pageType = 'formatter' }) {
         onClick={handleToTS}
         title="Generate TypeScript interfaces"
         className="p-5 rounded-3xl bg-white/5 border border-white/10 text-accent hover:border-accent hover:bg-accent/5 transition-all"
+        suppressHydrationWarning={true}
       >
         <FileJson size={22} />
       </button>
@@ -165,6 +169,7 @@ export default function FormatterPage({ pageType = 'formatter' }) {
         onClick={handleToCSV}
         title="Export to CSV rows"
         className="p-5 rounded-3xl bg-white/5 border border-white/10 text-success hover:border-success hover:bg-success/5 transition-all"
+        suppressHydrationWarning={true}
       >
         <Table size={22} />
       </button>
@@ -183,6 +188,7 @@ export default function FormatterPage({ pageType = 'formatter' }) {
             className="w-full bg-white/5 border border-white/10 rounded-xl py-2.5 pl-10 pr-4 text-xs font-mono outline-none focus:border-primary/50 transition-all focus:bg-white/10 text-white"
             value={filter}
             onChange={(e) => setFilter(e.target.value)}
+            suppressHydrationWarning={true}
           />
         </div>
         <div className="relative flex-1 group">
@@ -194,6 +200,7 @@ export default function FormatterPage({ pageType = 'formatter' }) {
             value={jsonPath}
             onChange={(e) => setJsonPath(e.target.value)}
             onKeyDown={(e) => e.key === 'Enter' && handleEvaluatePath()}
+            suppressHydrationWarning={true}
           />
         </div>
       </div>

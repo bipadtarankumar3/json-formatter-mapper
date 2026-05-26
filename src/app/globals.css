@@ -3,37 +3,37 @@
 @tailwind utilities;
 
 :root {
-  --background: #020617;
-  --foreground: #f8fafc;
-  --primary: #38bdf8;
-  --primary-glow: rgba(56, 189, 248, 0.4);
-  --secondary: #0f172a;
-  --accent: #8b5cf6;
-  --accent-glow: rgba(139, 92, 246, 0.4);
-  --success: #10b981;
-  --glass: rgba(15, 23, 42, 0.7);
+  --background: #030712;
+  --foreground: #f9fafb;
+  --primary: #ff5f00; /* Neon Orange matching logo */
+  --primary-glow: rgba(255, 95, 0, 0.4);
+  --secondary: #0b0f19;
+  --accent: #00df53; /* Neon Green matching logo */
+  --accent-glow: rgba(0, 223, 83, 0.4);
+  --success: #00df53;
+  --glass: rgba(11, 15, 25, 0.7);
   --glass-border: rgba(255, 255, 255, 0.08);
   --border: rgba(255, 255, 255, 0.1);
-  --text-muted: #94a3b8;
-  --shadow-premium: 0 0 50px -12px rgba(0, 0, 0, 0.5);
-  --neon-blue: #00d2ff;
-  --neon-purple: #9d50bb;
-  --cyber-pink: #ff0055;
+  --text-muted: #9ca3af;
+  --shadow-premium: 0 0 50px -12px rgba(0, 0, 0, 0.6);
+  --neon-blue: #ff5f00;
+  --neon-purple: #00df53;
+  --cyber-pink: #ff2d00;
 }
 
 .light {
-  --background: #fafaf9;
-  --foreground: #0c0a09;
-  --primary: #0284c7;
-  --primary-glow: rgba(2, 132, 199, 0.2);
-  --secondary: #f5f5f4;
-  --accent: #6d28d9;
-  --accent-glow: rgba(109, 40, 217, 0.2);
-  --success: #059669;
-  --glass: rgba(255, 255, 255, 0.85);
-  --glass-border: rgba(0, 0, 0, 0.08);
-  --border: rgba(0, 0, 0, 0.1);
-  --text-muted: #78716c;
+  --background: #f8fafc; /* Premium soft off-white background */
+  --foreground: #0f172a; /* Slate 900 */
+  --primary: #ea580c; /* Orange */
+  --primary-glow: rgba(234, 88, 12, 0.15);
+  --secondary: #f1f5f9; /* Slate 100 */
+  --accent: #16a34a; /* Green */
+  --accent-glow: rgba(22, 163, 74, 0.15);
+  --success: #16a34a;
+  --glass: #ffffff; /* Solid white card for max contrast */
+  --glass-border: rgba(15, 23, 42, 0.08); 
+  --border: rgba(15, 23, 42, 0.12);
+  --text-muted: #475569;
 }
 
 * {
@@ -93,7 +93,7 @@ body {
   left: 10%; 
   width: 400px; 
   height: 400px; 
-  background: radial-gradient(circle, #f472b6 0%, transparent 70%); 
+  background: radial-gradient(circle, var(--primary-glow) 0%, transparent 70%); 
   animation-delay: -8s;
 }
 
@@ -101,11 +101,18 @@ body {
 ::-webkit-scrollbar { width: 10px; }
 ::-webkit-scrollbar-track { background: var(--background); }
 ::-webkit-scrollbar-thumb { 
-  background: #1e293b; 
+  background: var(--glass-border); 
   border-radius: 10px;
   border: 2px solid var(--background);
 }
-::-webkit-scrollbar-thumb:hover { background: #334155; }
+::-webkit-scrollbar-thumb:hover { background: var(--primary); }
+
+.light ::-webkit-scrollbar-thumb { 
+  background: #d1d5db; 
+  border-radius: 10px;
+  border: 2px solid #ffffff;
+}
+.light ::-webkit-scrollbar-thumb:hover { background: #9ca3af; }
 
 /* Custom Animations */
 @keyframes fadeInUp {
@@ -118,9 +125,9 @@ body {
 }
 
 @keyframes pulse-glow {
-  0% { filter: drop-shadow(0 0 5px rgba(56, 189, 248, 0.4)); transform: scale(1); }
-  50% { filter: drop-shadow(0 0 15px #38bdf8); transform: scale(1.05); }
-  100% { filter: drop-shadow(0 0 5px rgba(56, 189, 248, 0.4)); transform: scale(1); }
+  0% { filter: drop-shadow(0 0 5px var(--primary-glow)); transform: scale(1); }
+  50% { filter: drop-shadow(0 0 15px var(--primary)); transform: scale(1.05); }
+  100% { filter: drop-shadow(0 0 5px var(--primary-glow)); transform: scale(1); }
 }
 
 .animate-pulse-glow {
@@ -129,10 +136,10 @@ body {
 
 /* Futuristic Utilities */
 .glass-panel {
-  background: rgba(15, 23, 42, 0.6);
+  background: var(--glass);
   backdrop-filter: blur(12px) saturate(180%);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+  border: 1px solid var(--glass-border);
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.2);
 }
 
 .neon-border {
@@ -203,24 +210,30 @@ body {
   left: 50%;
   transform: translateX(-50%);
   padding: 8px 12px;
-  background: rgba(15, 23, 42, 0.9);
+  background: var(--secondary);
   backdrop-filter: blur(8px);
   border: 1px solid var(--primary);
   border-radius: 8px;
-  color: white;
+  color: var(--foreground);
   font-size: 10px;
   font-weight: bold;
   white-space: nowrap;
   pointer-events: none;
   opacity: 0;
   transition: all 0.2s ease;
-  box-shadow: 0 0 15px rgba(56, 189, 248, 0.3);
+  box-shadow: 0 0 15px var(--primary-glow);
   z-index: 100;
 }
 
 .tooltip-container:hover .tooltip-content {
   opacity: 1;
   bottom: 140%;
+}
+
+.light .tooltip-content {
+  background: #ffffff;
+  border-color: var(--primary);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
 }
 
 /* Holographic Effect */
@@ -245,9 +258,9 @@ body {
   background: linear-gradient(
     45deg,
     transparent 0%,
-    rgba(56, 189, 248, 0.05) 45%,
-    rgba(56, 189, 248, 0.2) 50%,
-    rgba(56, 189, 248, 0.05) 55%,
+    rgba(255, 95, 0, 0.05) 45%,
+    var(--primary-glow) 50%,
+    rgba(255, 95, 0, 0.05) 55%,
     transparent 100%
   );
   transform: rotate(-45deg);
@@ -281,4 +294,209 @@ body {
   10% { opacity: 0.3; }
   90% { opacity: 0.3; }
   100% { transform: translateY(-100vh) scale(0.5); opacity: 0; }
+}
+
+/* Light Mode Overrides for Slate Grids */
+.light .cyber-grid {
+  background-image: linear-gradient(rgba(0, 0, 0, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0, 0, 0, 0.03) 1px, transparent 1px) !important;
+}
+
+/* Light mode header style override */
+.light header {
+  background-color: rgba(255, 255, 255, 0.8) !important;
+  border-color: rgba(0, 0, 0, 0.08) !important;
+  box-shadow: 0 4px 12px -5px rgba(0, 0, 0, 0.05);
+}
+
+/* Overrides for hardcoded text-white */
+.light .text-white {
+  color: #0c0a09 !important; /* resolves main heading and REVOXERA text to dark */
+}
+
+/* Specific text-white opacities rewritten as attribute selectors to prevent compiler stripping */
+.light [class*="text-white/"] { color: #475569; } /* fallback */
+.light [class~="text-white/95"] { color: #0f172a !important; }
+.light [class~="text-white/90"] { color: #1e293b !important; }
+.light [class~="text-white/85"] { color: #0f172a !important; }
+.light [class~="text-white/80"] { color: #334155 !important; }
+.light [class~="text-white/75"] { color: #1e293b !important; }
+.light [class~="text-white/70"] { color: #334155 !important; }
+.light [class~="text-white/60"] { color: #475569 !important; }
+.light [class~="text-white/50"] { color: #475569 !important; }
+.light [class~="text-white/40"] { color: #64748b !important; }
+.light [class~="text-white/30"] { color: #94a3b8 !important; }
+.light [class~="text-white/20"] { color: #94a3b8 !important; }
+.light [class~="text-white/10"] { color: #cbd5e1 !important; }
+.light [class~="text-white/5"] { color: #f1f5f9 !important; }
+
+/* Keep white text inside buttons, badges, and actual gradients that are colored/dark in light mode */
+.light [class*="bg-gradient-to-"].text-white,
+.light [class*="bg-gradient-to-"] .text-white,
+.light .bg-primary.text-black,
+.light button.bg-primary,
+.light button.bg-primary * {
+  color: #ffffff !important;
+}
+
+/* Background opacity mappings using attribute selectors */
+.light [class*="bg-white/"] { background-color: rgba(15, 23, 42, 0.02); } /* fallback */
+.light [class~="bg-white/2"] { background-color: rgba(15, 23, 42, 0.01) !important; }
+.light [class~="bg-white/4"] { background-color: rgba(15, 23, 42, 0.02) !important; }
+.light [class~="bg-white/5"] { background-color: rgba(15, 23, 42, 0.03) !important; }
+.light [class~="bg-white/8"] { background-color: rgba(15, 23, 42, 0.05) !important; }
+.light [class~="bg-white/10"] { background-color: rgba(15, 23, 42, 0.06) !important; }
+.light [class~="bg-white/20"] { background-color: rgba(15, 23, 42, 0.12) !important; }
+.light [class*="bg-white/[0."] { background-color: rgba(15, 23, 42, 0.02); } /* fallback for brackets */
+.light [class~="bg-white/[0.01]"] { background-color: rgba(15, 23, 42, 0.01) !important; }
+.light [class~="bg-white/[0.02]"] { background-color: rgba(15, 23, 42, 0.02) !important; }
+.light [class~="bg-white/[0.05]"] { background-color: rgba(15, 23, 42, 0.04) !important; }
+
+/* Border opacity mappings using attribute selectors */
+.light [class*="border-white/"] { border-color: rgba(15, 23, 42, 0.08); } /* fallback */
+.light [class~="border-white/5"] { border-color: rgba(15, 23, 42, 0.05) !important; }
+.light [class~="border-white/10"] { border-color: rgba(15, 23, 42, 0.08) !important; }
+.light [class~="border-white/20"] { border-color: rgba(15, 23, 42, 0.15) !important; }
+.light [class~="border-white/30"] { border-color: rgba(15, 23, 42, 0.25) !important; }
+
+/* Hover background modifications */
+.light [class*="hover:bg-white/"]:hover { background-color: rgba(15, 23, 42, 0.04) !important; }
+.light [class~="hover:bg-white/5"]:hover { background-color: rgba(15, 23, 42, 0.03) !important; }
+.light [class~="hover:bg-white/10"]:hover { background-color: rgba(15, 23, 42, 0.05) !important; }
+.light [class~="hover:bg-white/20"]:hover { background-color: rgba(15, 23, 42, 0.1) !important; }
+
+/* Overrides for text color properties */
+.light .text-slate-100 {
+  color: #0f172a !important; /* slate-900 */
+}
+.light .text-slate-200 {
+  color: #1e293b !important; /* slate-800 */
+}
+.light .text-slate-400 {
+  color: #374151 !important; /* gray-700 */
+}
+.light .text-slate-300 {
+  color: #1f2937 !important; /* gray-800 */
+}
+.light .text-slate-550 {
+  color: #4b5563 !important; /* gray-600 */
+}
+.light .text-slate-500 {
+  color: #4b5563 !important; /* gray-600 */
+}
+.light .text-muted {
+  color: #4b5563 !important;
+}
+
+/* Active elements style overrides */
+.light .text-primary {
+  color: var(--primary) !important;
+}
+.light .text-accent {
+  color: var(--accent) !important;
+}
+.light .bg-primary\/10 {
+  background-color: var(--primary-glow) !important;
+}
+
+/* Light mode inputs override */
+.light input,
+.light select,
+.light textarea {
+  color: #000000 !important;
+  background-color: rgba(0, 0, 0, 0.02) !important;
+  border-color: rgba(0, 0, 0, 0.08) !important;
+  font-family: inherit;
+}
+.light input:focus,
+.light select:focus,
+.light textarea:focus {
+  border-color: var(--primary) !important;
+  background-color: #ffffff !important;
+  box-shadow: 0 0 0 2px var(--primary-glow) !important;
+}
+
+.light code {
+  color: #1f2937 !important;
+}
+.light pre code {
+  color: #e5e7eb !important; /* Keep syntax code block readable in dark code wrappers */
+}
+
+/* Shadows and glows overrides */
+.light .shadow-2xl {
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.04), 0 8px 10px -6px rgba(0, 0, 0, 0.04) !important;
+}
+.light .shadow-\[0_0_20px_rgba\(56\,189\,248\,0\.3\)\] {
+  box-shadow: 0 0 20px rgba(255, 95, 0, 0.15) !important;
+}
+.light .shadow-\[0_0_30px_rgba\(56\,189\,248\,0\.4\)\] {
+  box-shadow: 0 0 30px rgba(255, 95, 0, 0.2) !important;
+}
+.light .shadow-\[0_0_20px_rgba\(56\,189\,248\,0\.3\)\]:hover,
+.light .shadow-\[0_0_30px_rgba\(56\,189\,248\,0\.4\)\]:hover {
+  box-shadow: 0 0 30px rgba(255, 95, 0, 0.3) !important;
+}
+
+/* Fix for the center column button icons and main theme elements */
+.light button.bg-primary {
+  color: #ffffff !important; 
+}
+.light button.bg-primary svg {
+  stroke: #ffffff !important;
+}
+.light button.bg-primary:hover {
+  background-color: #ea580c !important;
+}
+
+.light .bg-primary {
+  background-color: var(--primary) !important;
+}
+
+.light .text-primary\/80 {
+  color: var(--primary) !important;
+}
+
+/* Indentation selector styling in light mode */
+.light .text-slate-400.hover\:text-white:hover {
+  color: #000000 !important;
+}
+
+.light .bg-primary\/10 {
+  background-color: var(--primary-glow) !important;
+}
+
+/* Light mode icon triggers */
+.light .text-slate-400.hover\:text-primary:hover {
+  color: var(--primary) !important;
+}
+
+/* Extra status color overrides for better contrast in light mode */
+.light .text-emerald-300 { color: #047857 !important; }
+.light .text-red-300 { color: #b91c1c !important; }
+.light .text-amber-300 { color: #b45309 !important; }
+.light .text-purple-300 { color: #b45309 !important; }
+.light .text-violet-300 { color: #b45309 !important; }
+.light .text-pink-300 { color: #be185d !important; }
+.light .text-blue-300 { color: #047857 !important; }
+.light .text-teal-300 { color: #0f766e !important; }
+.light .text-purple-400 { color: #d97706 !important; }
+.light .text-violet-400 { color: #d97706 !important; }
+.light .text-indigo-400 { color: #ea580c !important; }
+.light .text-red-400 { color: #dc2626 !important; }
+.light .text-emerald-400 { color: #059669 !important; }
+
+/* About Page Manifesto Heading styles */
+.about-manifesto-heading {
+  background: linear-gradient(to bottom, #ffffff 0%, #ffffff 50%, rgba(255, 255, 255, 0.2) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.light .about-manifesto-heading {
+  background: linear-gradient(to bottom, #0f172a 0%, #0f172a 50%, rgba(15, 23, 42, 0.4) 100%) !important;
+  -webkit-background-clip: text !important;
+  -webkit-text-fill-color: transparent !important;
+  background-clip: text !important;
 }

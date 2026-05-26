@@ -184,6 +184,7 @@ export default function DiffPage({ mode = 'diff' }) {
               <button 
                 onClick={() => setInputA('')} 
                 className="text-[9px] font-black text-slate-500 hover:text-white uppercase transition-colors"
+                suppressHydrationWarning={true}
               >
                 Clear
               </button>
@@ -203,6 +204,7 @@ export default function DiffPage({ mode = 'diff' }) {
               <button 
                 onClick={() => setInputB('')} 
                 className="text-[9px] font-black text-slate-500 hover:text-white uppercase transition-colors"
+                suppressHydrationWarning={true}
               >
                 Clear
               </button>
@@ -222,12 +224,14 @@ export default function DiffPage({ mode = 'diff' }) {
             <button 
               onClick={handleCompare}
               className="px-6 py-3 rounded-xl bg-primary text-black font-black text-xs uppercase tracking-widest shadow-[0_0_15px_rgba(56,189,248,0.3)] hover:scale-105 transition-all"
+              suppressHydrationWarning={true}
             >
               Compare Payloads
             </button>
             <button 
               onClick={swapInputs}
               className="px-4 py-3 rounded-xl bg-white/5 hover:bg-white/10 text-slate-400 hover:text-white text-xs font-bold transition-all flex items-center gap-2 border border-white/10"
+              suppressHydrationWarning={true}
             >
               <RefreshCw size={12} /> Swap A ⇄ B
             </button>
@@ -240,6 +244,7 @@ export default function DiffPage({ mode = 'diff' }) {
                 checked={ignoreFormat}
                 onChange={(e) => setIgnoreFormat(e.target.checked)}
                 className="rounded border-white/10 bg-black/40 text-primary focus:ring-primary w-4 h-4"
+                suppressHydrationWarning={true}
               />
               <span>Ignore Formatting differences</span>
             </label>
@@ -251,6 +256,7 @@ export default function DiffPage({ mode = 'diff' }) {
                   viewMode === 'side-by-side' ? 'bg-primary text-black' : 'text-slate-400 hover:text-white'
                 }`}
                 title="Side-by-side comparison"
+                suppressHydrationWarning={true}
               >
                 <Columns size={12} /> Split
               </button>
@@ -260,6 +266,7 @@ export default function DiffPage({ mode = 'diff' }) {
                   viewMode === 'inline' ? 'bg-primary text-black' : 'text-slate-400 hover:text-white'
                 }`}
                 title="Inline unified timeline"
+                suppressHydrationWarning={true}
               >
                 <List size={12} /> Unified
               </button>

@@ -41,7 +41,7 @@ export default function AboutPage() {
               <Sparkles size={10} /> Operational Manifesto & Genesis
             </span>
           </div>
-          <h1 className="text-4xl md:text-6xl font-black tracking-tighter mb-6 bg-gradient-to-b from-white via-white to-white/20 bg-clip-text text-transparent">
+          <h1 className="text-4xl md:text-6xl font-black tracking-tighter mb-6 about-manifesto-heading">
             DECODING THE <span className="text-primary drop-shadow-[0_0_15px_rgba(56,189,248,0.6)]">FUTURE</span> OF DATA
           </h1>
           <p className="text-lg md:text-xl text-slate-400 font-light leading-relaxed">

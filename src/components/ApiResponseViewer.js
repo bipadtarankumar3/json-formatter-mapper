@@ -112,6 +112,7 @@ export default function ApiResponseViewer() {
             className="w-full bg-white/5 border border-white/10 rounded-2xl py-3 pl-12 pr-4 text-xs font-mono outline-none focus:border-primary/50 text-white"
             value={url}
             onChange={(e) => setUrl(e.target.value)}
+            suppressHydrationWarning={true}
           />
         </div>
       </div>
@@ -136,6 +137,7 @@ export default function ApiResponseViewer() {
             value={authToken}
             onChange={(e) => setAuthToken(e.target.value)}
             className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-2.5 text-xs font-mono outline-none focus:border-primary/50 text-white"
+            suppressHydrationWarning={true}
           />
         )}
       </div>
@@ -146,6 +148,7 @@ export default function ApiResponseViewer() {
           <button 
             onClick={addHeaderRow}
             className="text-[9px] font-black text-primary hover:text-white uppercase transition-colors"
+            suppressHydrationWarning={true}
           >
             + Add Header
           </button>
@@ -159,6 +162,7 @@ export default function ApiResponseViewer() {
                 value={h.key}
                 onChange={(e) => updateHeaderRow(i, 'key', e.target.value)}
                 className="flex-1 bg-white/5 border border-white/10 rounded-xl px-3 py-2 text-xs font-mono outline-none text-white"
+                suppressHydrationWarning={true}
               />
               <input
                 type="text"
@@ -166,10 +170,12 @@ export default function ApiResponseViewer() {
                 value={h.value}
                 onChange={(e) => updateHeaderRow(i, 'value', e.target.value)}
                 className="flex-1 bg-white/5 border border-white/10 rounded-xl px-3 py-2 text-xs font-mono outline-none text-white"
+                suppressHydrationWarning={true}
               />
               <button 
                 onClick={() => removeHeaderRow(i)}
                 className="text-red-400 hover:text-red-300 px-2 font-bold text-xs"
+                suppressHydrationWarning={true}
               >
                 ✕
               </button>
@@ -264,6 +270,7 @@ export default function ApiResponseViewer() {
           isLoading ? 'animate-spin' : ''
         }`}
         title="Send Request"
+        suppressHydrationWarning={true}
       >
         <Send size={22} />
       </button>

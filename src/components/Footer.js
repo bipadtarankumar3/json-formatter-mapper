@@ -91,7 +91,7 @@ export default function Footer() {
           <div className="lg:col-span-6 space-y-6">
             <Link href="/" className="flex items-center gap-2.5 group">
               <div className="w-10 h-10 rounded-xl overflow-hidden flex items-center justify-center transition-all duration-300 group-hover:scale-110 flex-shrink-0 bg-transparent">
-                <img src="/logo.png" alt="Revoxera Logo" className="w-full h-full object-cover invert dark:invert-0 hue-rotate-180 dark:hue-rotate-0 contrast-125 dark:contrast-100 saturate-150 dark:saturate-100 rounded-xl" />
+                <img src="/logo.png" alt="Revoxera Logo" className="w-full h-full object-cover rounded-xl" />
               </div>
             </Link>
             <p className="text-sm text-white/50 leading-relaxed max-w-sm">
@@ -174,20 +174,39 @@ export default function Footer() {
             </div>
           ))}
 
-          {/* Office Column */}
+          {/* Company Tools Column */}
           <div className="space-y-4">
             <h4 className="text-xs font-bold uppercase tracking-widest text-amber-500 flex items-center gap-1.5">
               <Radio className="w-3 h-3 text-amber-500/70" />
-              Office
+              Company Tools
             </h4>
-            <div className="flex items-start gap-2.5">
-              {/* <MapPin size={13} className="mt-0.5 shrink-0 text-white/20" />
-              <p className="text-xs leading-relaxed text-white/50">
-                6A Hampstead High St
-                <br />
-                London, NW3 1PR
-              </p> */}
-            </div>
+            <ul className="space-y-2.5">
+              <li>
+                <a href="https://aiprompt.revoxera.com" target="_blank" rel="noopener noreferrer" className="text-xs text-white/50 hover:text-amber-400 transition-colors duration-200 font-medium">
+                  AI Prompt Generator
+                </a>
+              </li>
+              <li>
+                <a href="https://sqlformatter.revoxera.com" target="_blank" rel="noopener noreferrer" className="text-xs text-white/50 hover:text-amber-400 transition-colors duration-200 font-medium">
+                  SQL Formatter
+                </a>
+              </li>
+              <li>
+                <a href="https://jsonformatter.revoxera.com" target="_blank" rel="noopener noreferrer" className="text-xs text-white/50 hover:text-amber-400 transition-colors duration-200 font-medium">
+                  JSON Formatter
+                </a>
+              </li>
+              <li>
+                <a href="https://colorcode.revoxera.com" target="_blank" rel="noopener noreferrer" className="text-xs text-white/50 hover:text-amber-400 transition-colors duration-200 font-medium">
+                  Color Code Tool
+                </a>
+              </li>
+              <li>
+                <a href="https://caseconverter.revoxera.com" target="_blank" rel="noopener noreferrer" className="text-xs text-white/50 hover:text-amber-400 transition-colors duration-200 font-medium">
+                  Case Converter
+                </a>
+              </li>
+            </ul>
           </div>
         </div>
 

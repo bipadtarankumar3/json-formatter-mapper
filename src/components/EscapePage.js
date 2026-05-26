@@ -47,6 +47,7 @@ export default function EscapePage() {
           className={`px-4 py-2 rounded-xl text-[10px] font-black uppercase transition-all ${
             mode === 'escape' ? 'bg-primary text-black' : 'text-slate-400 hover:text-white hover:bg-white/5'
           }`}
+          suppressHydrationWarning={true}
         >
           ESCAPE
         </button>
@@ -58,6 +59,7 @@ export default function EscapePage() {
           className={`px-4 py-2 rounded-xl text-[10px] font-black uppercase transition-all ${
             mode === 'unescape' ? 'bg-primary text-black' : 'text-slate-400 hover:text-white'
           }`}
+          suppressHydrationWarning={true}
         >
           UNESCAPE
         </button>
@@ -67,6 +69,7 @@ export default function EscapePage() {
         onClick={() => handleProcess()}
         className="p-5 rounded-3xl bg-primary text-black shadow-[0_0_20px_rgba(56,189,248,0.3)] hover:scale-105 transition-all"
         title="Execute escape operation"
+        suppressHydrationWarning={true}
       >
         <Play size={22} />
       </button>

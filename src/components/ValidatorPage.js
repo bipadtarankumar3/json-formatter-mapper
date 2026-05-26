@@ -132,6 +132,7 @@ export default function ValidatorPage() {
         onClick={() => handleValidate()}
         className="p-5 rounded-3xl bg-primary text-black shadow-[0_0_20px_rgba(56,189,248,0.3)] hover:scale-105 transition-all"
         title="Trigger validation lint"
+        suppressHydrationWarning={true}
       >
         <ShieldCheck size={22} />
       </button>
@@ -140,6 +141,7 @@ export default function ValidatorPage() {
           onClick={handleRepair}
           title="Auto-repair code errors"
           className="p-5 rounded-3xl bg-white/5 border border-white/10 text-accent hover:bg-white/10 transition-all animate-bounce"
+          suppressHydrationWarning={true}
         >
           <Wand2 size={22} />
         </button>

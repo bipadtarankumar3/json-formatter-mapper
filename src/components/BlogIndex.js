@@ -42,6 +42,7 @@ export default function BlogIndex() {
               className={`px-4 py-2 rounded-xl text-[10px] font-black uppercase transition-all ${
                 activeCategory === cat ? 'bg-primary text-black' : 'text-slate-400 hover:text-white hover:bg-white/5'
               }`}
+              suppressHydrationWarning={true}
             >
               {cat}
             </button>

@@ -33,6 +33,7 @@ export default function MinifyPage() {
         onClick={() => handleMinify()}
         className="p-5 rounded-3xl bg-primary text-black shadow-[0_0_20px_rgba(56,189,248,0.3)] hover:scale-105 transition-all"
         title="Execute minification"
+        suppressHydrationWarning={true}
       >
         <Minimize2 size={22} />
       </button>

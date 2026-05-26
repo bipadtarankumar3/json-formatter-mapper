@@ -87,6 +87,7 @@ export default function ContactPage() {
                     <button 
                       onClick={() => setSubmitted(false)}
                       className="mt-4 px-6 py-2.5 rounded-xl bg-white/5 hover:bg-white/10 text-[10px] font-black tracking-widest text-white border border-white/10 uppercase transition-all"
+                      suppressHydrationWarning={true}
                     >
                       New Transmission
                     </button>
@@ -108,6 +109,7 @@ export default function ContactPage() {
                         value={formData.name}
                         onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                         className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white outline-none focus:border-primary/50 text-xs"
+                        suppressHydrationWarning={true}
                       />
                     </div>
 
@@ -120,6 +122,7 @@ export default function ContactPage() {
                         value={formData.email}
                         onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                         className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white outline-none focus:border-primary/50 text-xs"
+                        suppressHydrationWarning={true}
                       />
                     </div>
 
@@ -152,6 +155,7 @@ export default function ContactPage() {
                       type="submit"
                       disabled={isSubmitting}
                       className="w-full flex items-center justify-center gap-2.5 py-4 rounded-2xl bg-primary text-black font-black text-[10px] tracking-widest uppercase transition-all hover:scale-[1.02] shadow-[0_0_20px_rgba(56,189,248,0.2)] disabled:opacity-50"
+                      suppressHydrationWarning={true}
                     >
                       {isSubmitting ? (
                         <div className="w-4 h-4 border-2 border-black border-t-transparent rounded-full animate-spin" />

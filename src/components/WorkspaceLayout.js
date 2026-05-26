@@ -175,6 +175,7 @@ export default function WorkspaceLayout({
                 <button 
                   onClick={() => setLargeFileWarning(false)}
                   className="flex-1 py-3 rounded-xl bg-red-500 hover:bg-red-600 text-black text-xs font-black tracking-widest uppercase transition-all"
+                  suppressHydrationWarning={true}
                 >
                   Confirm & Format
                 </button>
@@ -184,6 +185,7 @@ export default function WorkspaceLayout({
                     onInputChange(inputValue.slice(0, 1024 * 500)); // Truncate to 500KB
                   }}
                   className="flex-1 py-3 rounded-xl bg-white/5 hover:bg-white/10 text-white text-xs font-black tracking-widest uppercase border border-white/10 transition-all"
+                  suppressHydrationWarning={true}
                 >
                   Truncate File (Fast)
                 </button>
@@ -260,6 +262,7 @@ export default function WorkspaceLayout({
                     onClick={onRepair} 
                     title="Auto-repair code errors"
                     className="p-3 rounded-xl bg-white/5 hover:bg-white/10 text-slate-400 hover:text-accent transition-all shrink-0"
+                    suppressHydrationWarning={true}
                   >
                     <Wand2 size={16} />
                   </button>
@@ -268,6 +271,7 @@ export default function WorkspaceLayout({
                   onClick={() => fileInputRef.current?.click()} 
                   title="Import configuration file"
                   className="p-3 rounded-xl bg-white/5 hover:bg-white/10 text-slate-400 hover:text-primary transition-all shrink-0"
+                  suppressHydrationWarning={true}
                 >
                   <Upload size={16} />
                 </button>
@@ -282,6 +286,7 @@ export default function WorkspaceLayout({
                   onClick={() => handleCopy('input')} 
                   title="Copy original code"
                   className="p-3 rounded-xl bg-white/5 hover:bg-white/10 text-slate-400 hover:text-primary transition-all shrink-0"
+                  suppressHydrationWarning={true}
                 >
                   {copied.input ? <Check size={16} className="text-success" /> : <Copy size={16} />}
                 </button>
@@ -290,6 +295,7 @@ export default function WorkspaceLayout({
                     onClick={onClear} 
                     title="Clear panel input"
                     className="p-3 rounded-xl bg-white/5 hover:bg-red-500/20 text-slate-400 hover:text-red-400 transition-all shrink-0"
+                    suppressHydrationWarning={true}
                   >
                     <Trash2 size={16} />
                   </button>
@@ -341,6 +347,7 @@ export default function WorkspaceLayout({
                   className={`flex-1 min-w-[80px] py-4 text-[10px] font-black tracking-[0.3em] uppercase transition-all rounded-2xl relative ${
                     activeTab === tab ? 'text-primary bg-primary/10 shadow-inner' : 'text-slate-400 hover:text-white hover:bg-white/5'
                   }`}
+                  suppressHydrationWarning={true}
                 >
                   {tab}
                   {activeTab === tab && (
@@ -391,12 +398,14 @@ export default function WorkspaceLayout({
                 <button 
                   onClick={handleDownload} 
                   className="flex-1 md:flex-none flex items-center justify-center gap-2.5 px-6 py-3.5 rounded-2xl bg-white/5 hover:bg-white/10 text-[10px] font-black tracking-widest transition-all border border-white/10 text-white"
+                  suppressHydrationWarning={true}
                 >
                   <Download size={14} /> DOWNLOAD
                 </button>
                 <button 
                   onClick={() => handleCopy('output')} 
                   className="flex-1 md:flex-none flex items-center justify-center gap-2.5 px-6 py-3.5 rounded-2xl bg-primary text-black text-[10px] font-black tracking-widest transition-all shadow-[0_0_20px_rgba(56,189,248,0.3)] hover:scale-105"
+                  suppressHydrationWarning={true}
                 >
                   <Copy size={14} /> {copied.output ? 'SYNCED' : 'COPY'}
                 </button>
@@ -439,6 +448,7 @@ export default function WorkspaceLayout({
                     <button
                       onClick={() => toggleFaq(idx)}
                       className="w-full p-5 flex justify-between items-center text-left text-xs font-bold text-slate-200 hover:text-white uppercase tracking-wider transition-colors bg-white/[0.01]"
+                      suppressHydrationWarning={true}
                     >
                       <span>{item.q}</span>
                       {isOpen ? <ChevronRight size={14} className="rotate-90 text-primary transition-transform" /> : <ChevronRight size={14} className="text-slate-400 transition-transform" />}

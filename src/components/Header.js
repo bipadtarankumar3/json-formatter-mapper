@@ -55,7 +55,7 @@ export default function Header() {
             <img 
               src="/logo.png" 
               alt="JSON Master Logo" 
-              className="w-10 h-10 object-contain invert dark:invert-0 hue-rotate-180 dark:hue-rotate-0 contrast-125 dark:contrast-100 saturate-150 dark:saturate-100 rounded-xl" 
+              className="w-10 h-10 object-contain rounded-xl" 
             />
             <span className="hidden sm:inline font-sans font-black tracking-tight text-white text-lg">REVOXERA</span>
           </a>
@@ -65,6 +65,7 @@ export default function Header() {
             <button 
               onClick={() => setIsPaletteOpen(true)}
               className="w-full flex items-center justify-between gap-3 px-4 py-2.5 rounded-2xl bg-white/5 border border-white/10 text-xs font-semibold text-slate-400 hover:text-white hover:border-primary/30 transition-all text-left"
+              suppressHydrationWarning={true}
             >
               <span className="flex items-center gap-2"><Search size={14} /> Quick search...</span>
               <kbd className="text-[10px] font-black text-slate-500 bg-white/10 px-1.5 py-0.5 rounded uppercase">Ctrl+K</kbd>
@@ -79,6 +80,7 @@ export default function Header() {
               onClick={() => setIsPaletteOpen(true)}
               className="md:hidden p-3 rounded-xl bg-white/5 text-slate-400 hover:text-white border border-white/10"
               aria-label="Open search dialog"
+              suppressHydrationWarning={true}
             >
               <Search size={18} />
             </button>
@@ -88,6 +90,7 @@ export default function Header() {
               onClick={toggleTheme}
               className="p-3 rounded-xl bg-white/5 text-slate-400 hover:text-white border border-white/10 transition-colors shrink-0"
               aria-label="Toggle display theme"
+              suppressHydrationWarning={true}
             >
               {theme === 'dark' ? <Sun size={18} className="text-amber-400" /> : <Moon size={18} className="text-indigo-400" />}
             </button>
@@ -96,6 +99,7 @@ export default function Header() {
               className="md:hidden flex items-center justify-center p-3 rounded-xl bg-white/5 text-white border border-white/10 shrink-0"
               onClick={() => setIsMenuOpen(!isMenuOpen)}
               aria-label={isMenuOpen ? "Close menu" : "Open menu"}
+              suppressHydrationWarning={true}
             >
               {isMenuOpen ? <X size={18} /> : <Menu size={18} />}
             </button>

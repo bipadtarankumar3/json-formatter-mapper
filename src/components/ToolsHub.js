@@ -69,6 +69,7 @@ export default function ToolsHub() {
                 className={`px-4 py-2 rounded-xl text-[10px] font-black uppercase transition-all ${
                   activeCategory === cat ? 'bg-primary text-black' : 'text-slate-400 hover:text-white hover:bg-white/5'
                 }`}
+                suppressHydrationWarning={true}
               >
                 {cat}
               </button>
@@ -83,6 +84,7 @@ export default function ToolsHub() {
               className="w-full bg-white/5 border border-white/10 rounded-2xl py-3 pl-12 pr-4 text-xs font-mono outline-none focus:border-primary/50 text-white"
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
+              suppressHydrationWarning={true}
             />
           </div>
         </section>

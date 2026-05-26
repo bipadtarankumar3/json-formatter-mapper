@@ -1,13 +1,14 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import { ChevronRight, ChevronDown, Brackets, Hash, Type, ToggleLeft as Toggle } from 'lucide-react';
+import { ChevronRight, ChevronDown, Brackets, Hash, Type, ToggleLeft as Toggle, Copy, Check } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 
-const TreeItem = ({ name, value, depth = 0, filter = '' }) => {
+const TreeItem = ({ name, value, depth = 0, filter = '', path = '$' }) => {
   const isObject = value !== null && typeof value === 'object';
   const isArray = Array.isArray(value);
   const [isOpen, setIsOpen] = useState(depth < 2);
+  const [copiedPath, setCopiedPath] = useState(false);
 
   // Auto-expand if filter matches children
   useEffect(() => {
@@ -45,7 +46,7 @@ const TreeItem = ({ name, value, depth = 0, filter = '' }) => {
   return (
     <div className="select-none">
       <div
-        className={`flex items-center gap-2 py-1 px-2 rounded-lg transition-colors cursor-pointer hover:bg-white/5 ${depth === 0 ? 'mt-2' : ''}`}
+        className={`flex items-center gap-2 py-1 px-2 rounded-lg transition-colors cursor-pointer hover:bg-white/5 group relative ${depth === 0 ? 'mt-2' : ''}`}
         onClick={isObject ? toggleOpen : undefined}
         style={{ paddingLeft: `${depth * 20 + 8}px` }}
       >
@@ -73,6 +74,31 @@ const TreeItem = ({ name, value, depth = 0, filter = '' }) => {
             {isArray ? `[${value.length}]` : `{${Object.keys(value).length}}`}
           </span>
         )}
+
+        {/* Interactive Copy Path Button */}
+        <button
+          onClick={(e) => {
+            e.stopPropagation();
+            navigator.clipboard.writeText(path);
+            setCopiedPath(true);
+            setTimeout(() => setCopiedPath(false), 1500);
+          }}
+          className="ml-auto opacity-0 group-hover:opacity-100 transition-opacity p-1 rounded hover:bg-white/10 text-slate-500 hover:text-primary flex items-center gap-1 text-[9px] font-bold font-mono tracking-wider shrink-0 uppercase"
+          title={`Copy JSONPath: ${path}`}
+          suppressHydrationWarning={true}
+        >
+          {copiedPath ? (
+            <>
+              <Check size={10} className="text-success" />
+              <span className="text-success text-[8px]">Copied!</span>
+            </>
+          ) : (
+            <>
+              <Copy size={10} />
+              <span className="hidden md:inline text-[8px] text-slate-500 font-normal">{path}</span>
+            </>
+          )}
+        </button>
       </div>
 
       <AnimatePresence>
@@ -83,9 +109,22 @@ const TreeItem = ({ name, value, depth = 0, filter = '' }) => {
             exit={{ height: 0, opacity: 0 }}
             className="overflow-hidden"
           >
-            {Object.entries(value).map(([key, val]) => (
-              <TreeItem key={key} name={key} value={val} depth={depth + 1} filter={filter} />
-            ))}
+            {Object.entries(value).map(([key, val]) => {
+              let childPath = path;
+              if (isArray) {
+                childPath = `${path}[${key}]`;
+              } else {
+                const validIdentifier = /^[a-zA-Z_$][a-zA-Z0-9_$]*$/;
+                if (validIdentifier.test(key)) {
+                  childPath = `${path}.${key}`;
+                } else {
+                  childPath = `${path}["${key}"]`;
+                }
+              }
+              return (
+                <TreeItem key={key} name={key} value={val} depth={depth + 1} filter={filter} path={childPath} />
+              );
+            })}
           </motion.div>
         )}
       </AnimatePresence>
@@ -98,7 +137,7 @@ export default function TreeViewer({ data, filter = '' }) {
 
   return (
     <div className="w-full h-full overflow-y-auto custom-scrollbar p-4 bg-black/20 rounded-2xl border border-white/5">
-      <TreeItem name="root" value={data} filter={filter} />
+      <TreeItem name="root" value={data} filter={filter} path="$" />
 
 
     </div>

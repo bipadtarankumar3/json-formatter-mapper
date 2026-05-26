@@ -3,7 +3,8 @@
 import { useState, useRef, useEffect } from 'react';
 import { 
   Copy, Download, Trash2, Wand2, Check, Upload, HelpCircle, 
-  ArrowRight, ShieldCheck, ChevronDown, ChevronRight, Activity, Globe
+  ArrowRight, ShieldCheck, ChevronDown, ChevronRight, Activity, Globe,
+  History
 } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import Link from 'next/link';
@@ -43,8 +44,108 @@ export default function WorkspaceLayout({
   const [latency, setLatency] = useState(0);
   const [isLargeFile, setIsLargeFile] = useState(false);
   const [largeFileWarning, setLargeFileWarning] = useState(false);
+  const [history, setHistory] = useState([]);
+  const [historyOpen, setHistoryOpen] = useState(false);
   
   const fileInputRef = useRef(null);
+
+  const draftKey = `revoxera_draft_${title.toLowerCase().replace(/\s+/g, '_')}`;
+
+  // Load draft session from localStorage on mount
+  useEffect(() => {
+    const savedDraft = localStorage.getItem(draftKey);
+    if (savedDraft && !inputValue) {
+      onInputChange(savedDraft);
+    }
+  }, [draftKey]);
+
+  // Save draft session to localStorage when input value changes
+  useEffect(() => {
+    if (inputValue) {
+      localStorage.setItem(draftKey, inputValue);
+    } else {
+      localStorage.removeItem(draftKey);
+    }
+  }, [inputValue, draftKey]);
+
+  // Load history from localStorage on mount
+  useEffect(() => {
+    try {
+      const savedHistory = JSON.parse(localStorage.getItem('revoxera_history') || '[]');
+      setHistory(savedHistory);
+    } catch (e) {
+      setHistory([]);
+    }
+  }, []);
+
+  // Helper to append a processed operation into history
+  const addToHistory = (value) => {
+    if (!value || !value.trim()) return;
+    const trimmed = value.trim();
+    
+    let historyList = [];
+    try {
+      historyList = JSON.parse(localStorage.getItem('revoxera_history') || '[]');
+    } catch (e) {
+      historyList = [];
+    }
+    
+    // Filter duplicates of exact same content
+    historyList = historyList.filter(item => item.input.trim() !== trimmed);
+    
+    const snippet = trimmed.slice(0, 80) + (trimmed.length > 80 ? '...' : '');
+    const sizeInKb = (new Blob([trimmed]).size / 1024).toFixed(2);
+    const now = new Date();
+    const timestamp = now.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', second: '2-digit' });
+    
+    const newItem = {
+      id: Date.now(),
+      timestamp,
+      tool: title,
+      input: trimmed,
+      size: `${sizeInKb} KB`,
+      snippet
+    };
+    
+    historyList.unshift(newItem);
+    if (historyList.length > 15) {
+      historyList = historyList.slice(0, 15);
+    }
+    
+    localStorage.setItem('revoxera_history', JSON.stringify(historyList));
+    setHistory(historyList);
+  };
+
+  // Debounced history save when user input is stable
+  useEffect(() => {
+    if (!inputValue || !inputValue.trim()) return;
+    const timer = setTimeout(() => {
+      addToHistory(inputValue);
+    }, 3000);
+    return () => clearTimeout(timer);
+  }, [inputValue]);
+
+  // Handler to inject a rich complex JSON mock payload for immediate test drive
+  const handleLoadSample = () => {
+    const sampleJson = {
+      appName: "Revoxera Sandbox",
+      version: 2.4,
+      status: "active",
+      meta: {
+        uptimeSeconds: 154820,
+        environment: "production",
+        features: ["beautify", "minify", "tree_view", "typescript_gen", "csv_export"]
+      },
+      users: [
+        { id: 1, name: "Alice Vance", role: "DevOps", active: true },
+        { id: 2, name: "Bob Miller", role: "Fullstack", active: false },
+        { id: 3, name: "Charlie King", role: "Frontend", active: true }
+      ]
+    };
+    const sampleText = JSON.stringify(sampleJson, null, 2);
+    onInputChange(sampleText);
+    addToHistory(sampleText);
+  };
 
   // Measure execution latency
   useEffect(() => {
@@ -247,9 +348,17 @@ export default function WorkspaceLayout({
                   <div className="w-3 h-3 rounded-full bg-yellow-500/50 border border-yellow-500/20" />
                   <div className="w-3 h-3 rounded-full bg-green-500/50 border border-green-500/20" />
                 </div>
-                <span className="ml-2 text-[10px] font-black tracking-[0.3em] text-primary/80 uppercase truncate max-w-[150px] md:max-w-none">
+                <span className="ml-2 text-[10px] font-black tracking-[0.3em] text-primary/80 uppercase truncate max-w-[120px] md:max-w-none">
                   {inputLabel}
                 </span>
+                <button
+                  onClick={handleLoadSample}
+                  className="px-2.5 py-1 rounded bg-primary/10 hover:bg-primary/20 text-primary text-[8px] font-black tracking-widest uppercase transition-all border border-primary/20 hover:scale-105"
+                  title="Load dummy JSON for testing"
+                  suppressHydrationWarning={true}
+                >
+                  Test Sample
+                </button>
                 {isLargeFile && (
                   <span className="text-[8px] font-black tracking-widest bg-amber-500/10 text-amber-400 px-2 py-0.5 rounded-full border border-amber-500/20 uppercase">
                     LARGE PAYLOAD
@@ -257,6 +366,14 @@ export default function WorkspaceLayout({
                 )}
               </div>
               <div className="flex gap-2">
+                <button 
+                  onClick={() => setHistoryOpen(!historyOpen)} 
+                  title="View past sessions history"
+                  className={`p-3 rounded-xl transition-all shrink-0 ${historyOpen ? 'bg-primary text-black' : 'bg-white/5 hover:bg-white/10 text-slate-400 hover:text-primary'}`}
+                  suppressHydrationWarning={true}
+                >
+                  <History size={16} />
+                </button>
                 {onRepair && (
                   <button 
                     onClick={onRepair} 
@@ -302,6 +419,96 @@ export default function WorkspaceLayout({
                 )}
               </div>
             </div>
+
+            {/* History Drawer Overlay */}
+            <AnimatePresence>
+              {historyOpen && (
+                <motion.div
+                  initial={{ x: '-100%' }}
+                  animate={{ x: 0 }}
+                  exit={{ x: '-100%' }}
+                  transition={{ type: 'spring', damping: 25, stiffness: 200 }}
+                  className="absolute inset-0 bg-black/95 backdrop-blur-md z-30 flex flex-col border-r border-white/10"
+                >
+                  <div className="p-6 flex justify-between items-center border-b border-white/10 bg-white/5">
+                    <span className="text-xs font-black tracking-[0.2em] text-white uppercase flex items-center gap-2">
+                      <History size={14} className="text-primary animate-pulse" /> PAST SESSIONS
+                    </span>
+                    <div className="flex gap-2">
+                      {history.length > 0 && (
+                        <button
+                          onClick={() => {
+                            localStorage.setItem('revoxera_history', '[]');
+                            setHistory([]);
+                          }}
+                          className="px-3 py-1.5 rounded-lg bg-red-500/10 hover:bg-red-500/20 text-red-400 text-[9px] font-black tracking-widest uppercase transition-all border border-red-500/20"
+                          suppressHydrationWarning={true}
+                        >
+                          Clear All
+                        </button>
+                      )}
+                      <button
+                        onClick={() => setHistoryOpen(false)}
+                        className="p-1.5 rounded-lg bg-white/5 hover:bg-white/10 text-slate-400 hover:text-white transition-all text-xs"
+                        suppressHydrationWarning={true}
+                      >
+                        ✕
+                      </button>
+                    </div>
+                  </div>
+                  <div className="flex-1 overflow-y-auto p-4 space-y-3 custom-scrollbar">
+                    {history.length === 0 ? (
+                      <div className="h-full flex flex-col items-center justify-center text-center p-6">
+                        <span className="text-slate-600 font-mono text-xs uppercase tracking-widest mb-2">No history recorded</span>
+                        <p className="text-[10px] text-slate-500 font-light leading-relaxed max-w-[200px]">
+                          Format or process data, and your last 15 inputs will appear here automatically.
+                        </p>
+                      </div>
+                    ) : (
+                      history.map((item) => (
+                        <div
+                          key={item.id}
+                          onClick={() => {
+                            onInputChange(item.input);
+                            setHistoryOpen(false);
+                          }}
+                          className="p-4 rounded-2xl bg-white/5 border border-white/5 hover:border-primary/30 hover:bg-white/[0.08] cursor-pointer transition-all group relative"
+                        >
+                          <div className="flex justify-between items-center mb-2">
+                            <span className="text-[9px] font-black tracking-wider text-primary uppercase">
+                              {item.tool}
+                            </span>
+                            <div className="flex items-center gap-2">
+                              <span className="text-[9px] text-slate-500 font-mono">
+                                {item.timestamp}
+                              </span>
+                              <span className="text-[8px] px-1.5 py-0.5 rounded bg-white/5 text-slate-400 font-mono">
+                                {item.size}
+                              </span>
+                              <button
+                                onClick={(e) => {
+                                  e.stopPropagation();
+                                  const updated = history.filter(h => h.id !== item.id);
+                                  localStorage.setItem('revoxera_history', JSON.stringify(updated));
+                                  setHistory(updated);
+                                }}
+                                className="text-slate-500 hover:text-red-400 p-1 opacity-0 group-hover:opacity-100 transition-opacity"
+                                title="Delete item"
+                              >
+                                <Trash2 size={10} />
+                              </button>
+                            </div>
+                          </div>
+                          <div className="text-xs font-mono text-slate-400 line-clamp-2 break-all bg-black/30 p-2 rounded-lg border border-white/5">
+                            {item.snippet}
+                          </div>
+                        </div>
+                      ))
+                    )}
+                  </div>
+                </motion.div>
+              )}
+            </AnimatePresence>
 
             {dragActive && (
               <div className="absolute inset-0 bg-primary/5 flex flex-col items-center justify-center pointer-events-none z-20 border-2 border-dashed border-primary rounded-[40px] backdrop-blur-sm animate-pulse">

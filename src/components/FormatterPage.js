@@ -90,12 +90,22 @@ export default function FormatterPage({ pageType = 'formatter' }) {
     }
   };
 
-  // Run initial format on mount if there is default content
+  // Load saved indentation size preference on mount
   useEffect(() => {
+    const savedIndent = localStorage.getItem('revoxera_indent_preference');
+    if (savedIndent) {
+      setIndentSize(savedIndent);
+    }
+  }, []);
+
+  // Run initial format on mount if there is default content and save preference
+  useEffect(() => {
+    localStorage.setItem('revoxera_indent_preference', indentSize);
     if (jsonInput) {
       handleFormat(jsonInput, indentSize);
     }
   }, [indentSize]);
+
 
   // Features list
   const features = [

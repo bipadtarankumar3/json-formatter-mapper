@@ -60,6 +60,7 @@
 
 html {
   scroll-behavior: smooth;
+  overflow-x: hidden;
 }
 
 body {
@@ -252,6 +253,34 @@ body {
 
 .custom-scrollbar::-webkit-scrollbar-thumb:hover {
   background: var(--primary);
+}
+
+/* ── Workspace controls strip ── */
+.workspace-controls-strip {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 8px;
+  width: 100%;
+  overflow-x: auto;
+  overflow-y: visible;
+  padding: 8px 4px;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+.workspace-controls-strip::-webkit-scrollbar {
+  display: none;
+}
+@media (min-width: 1280px) {
+  .workspace-controls-strip {
+    flex-direction: column;
+    width: auto;
+    overflow: visible;
+    padding: 96px 0;
+    gap: 16px;
+    justify-content: center;
+  }
 }
 
 /* Tooltip System */

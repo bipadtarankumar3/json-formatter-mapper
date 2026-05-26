@@ -129,62 +129,69 @@ export default function FormatterPage({ pageType = 'formatter' }) {
     { name: 'JSON Compare', href: '/json-compare' }
   ];
 
-  // Controls JSX (Beautifier Hub)
+  // Controls JSX (Beautifier Hub) — compact for mobile horizontal strip
   const controls = (
-    <div className="flex xl:flex-col gap-4 justify-center items-center">
-      <div className="bg-white/5 border border-white/10 rounded-3xl p-4 flex xl:flex-col gap-2 relative">
-        <label className="text-[8px] font-black text-slate-500 tracking-widest uppercase text-center xl:mb-2">Indentation</label>
+    <>
+      {/* Indentation group */}
+      <div className="flex xl:flex-col items-center gap-1 bg-white/5 border border-white/10 rounded-2xl p-2 shrink-0">
+        <span className="text-[7px] font-black text-slate-500 tracking-widest uppercase hidden xl:block mb-1">Indent</span>
         {['2', '4', 'tab'].map(size => (
           <button
             key={size}
             onClick={() => setIndentSize(size)}
-            className={`px-4 py-2 rounded-xl text-[10px] font-black uppercase transition-all ${
+            className={`px-3 py-2 rounded-xl text-[9px] font-black uppercase transition-all whitespace-nowrap shrink-0 ${
               indentSize === size ? 'bg-primary text-black' : 'text-slate-400 hover:text-white hover:bg-white/5'
             }`}
+            title={size === 'tab' ? 'Tab indentation' : `${size} spaces`}
             suppressHydrationWarning={true}
           >
-            {size === 'tab' ? 'TABS' : `${size} SP`}
+            {size === 'tab' ? 'TAB' : `${size}SP`}
           </button>
         ))}
       </div>
 
+      {/* Beautify button */}
       <button
         onClick={() => handleFormat(jsonInput, indentSize)}
-        title="Beautify JSON output"
-        className="p-5 rounded-3xl bg-primary text-black shadow-[0_0_20px_rgba(56,189,248,0.3)] hover:scale-105 transition-all"
+        title="Beautify JSON"
+        className="p-3.5 xl:p-5 rounded-2xl xl:rounded-3xl bg-primary text-black shadow-[0_0_20px_rgba(255,95,0,0.3)] hover:scale-105 active:scale-95 transition-all shrink-0"
         suppressHydrationWarning={true}
       >
-        <Maximize2 size={22} />
+        <Maximize2 size={18} />
       </button>
 
+      {/* Minify button */}
       <button
         onClick={handleMinify}
-        title="Minify JSON output"
-        className="p-5 rounded-3xl bg-white/5 border border-white/10 text-white hover:bg-white/10 transition-all"
+        title="Minify JSON"
+        className="p-3.5 xl:p-5 rounded-2xl xl:rounded-3xl bg-white/5 border border-white/10 text-white hover:bg-white/10 active:scale-95 transition-all shrink-0"
         suppressHydrationWarning={true}
       >
-        <Minimize2 size={22} />
+        <Minimize2 size={18} />
       </button>
 
+      {/* TypeScript button */}
       <button
         onClick={handleToTS}
         title="Generate TypeScript interfaces"
-        className="p-5 rounded-3xl bg-white/5 border border-white/10 text-accent hover:border-accent hover:bg-accent/5 transition-all"
+        className="p-3.5 xl:p-5 rounded-2xl xl:rounded-3xl bg-white/5 border border-white/10 text-accent hover:border-accent hover:bg-accent/5 active:scale-95 transition-all shrink-0"
         suppressHydrationWarning={true}
       >
-        <FileJson size={22} />
+        <FileJson size={18} />
       </button>
 
+      {/* CSV button */}
       <button
         onClick={handleToCSV}
-        title="Export to CSV rows"
-        className="p-5 rounded-3xl bg-white/5 border border-white/10 text-success hover:border-success hover:bg-success/5 transition-all"
+        title="Export to CSV"
+        className="p-3.5 xl:p-5 rounded-2xl xl:rounded-3xl bg-white/5 border border-white/10 text-success hover:border-success hover:bg-success/5 active:scale-95 transition-all shrink-0"
         suppressHydrationWarning={true}
       >
-        <Table size={22} />
+        <Table size={18} />
       </button>
-    </div>
+    </>
   );
+
 
   // Custom Output Area depending on active tab
   const customOutputArea = activeTab === 'tree' ? (
@@ -238,6 +245,7 @@ export default function FormatterPage({ pageType = 'formatter' }) {
       title={pageType === 'pretty-print' ? 'JSON Pretty Print' : 'JSON Formatter'}
       h1={pageType === 'pretty-print' ? 'JSON Pretty Printer' : 'JSON Formatter & Beautifier'}
       intro="Paste raw, compressed data to format spacing, align indentation nodes, and structure interfaces instantly with zero latency."
+      isHomePage={pageType === 'formatter'}
       
       inputValue={jsonInput}
       onInputChange={(val) => {

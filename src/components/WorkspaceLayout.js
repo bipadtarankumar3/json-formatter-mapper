@@ -38,6 +38,7 @@ export default function WorkspaceLayout({
   features = [],
   relatedTools = [],
   schema = null,
+  isHomePage = false,
 }) {
   const [copied, setCopied] = useState({ input: false, output: false });
   const [dragActive, setDragActive] = useState(false);
@@ -243,7 +244,7 @@ export default function WorkspaceLayout({
   };
 
   return (
-    <div className="min-h-screen cyber-grid pb-20 relative overflow-hidden">
+    <div className="min-h-screen cyber-grid pb-20 relative overflow-x-hidden">
       <div className="scanline" />
 
       {/* Structured SEO schemas dynamically injected */}
@@ -296,27 +297,31 @@ export default function WorkspaceLayout({
         )}
       </AnimatePresence>
 
-      <div className="container mx-auto px-4 md:px-6 animate-fade-in max-w-[1600px] relative z-10 pt-8">
+      <div className="container mx-auto px-4 md:px-6 animate-fade-in max-w-[1600px] relative z-10 pt-8 overflow-x-hidden">
         
-        {/* Breadcrumb Navigation for Technical SEO */}
-        <nav className="mb-6 text-[10px] font-black tracking-[0.2em] text-slate-500 uppercase flex items-center gap-2">
-          <Link href="/" className="hover:text-primary transition-colors">HOME</Link>
-          <span>/</span>
-          <Link href="/tools" className="hover:text-primary transition-colors">TOOLS</Link>
-          <span>/</span>
-          <span className="text-primary">{title}</span>
-        </nav>
+        {/* Breadcrumb Navigation — hidden on home page */}
+        {!isHomePage && (
+          <nav className="mb-6 text-[10px] font-black tracking-[0.2em] text-slate-500 uppercase flex items-center gap-2">
+            <Link href="/" className="hover:text-primary transition-colors">HOME</Link>
+            <span>/</span>
+            <Link href="/tools" className="hover:text-primary transition-colors">TOOLS</Link>
+            <span>/</span>
+            <span className="text-primary">{title}</span>
+          </nav>
+        )}
 
         {/* Hero Landing Description */}
         <section className="text-center mb-8 max-w-[1200px] mx-auto">
-          <motion.div
-            initial={{ scale: 0.9, opacity: 0 }} animate={{ scale: 1, opacity: 1 }}
-            className="inline-block mb-4 px-5 py-1.5 rounded-full bg-white/5 border border-white/10 backdrop-blur-xl"
-          >
-            <span className="text-[9px] font-black tracking-[0.3em] text-primary uppercase flex items-center gap-2 justify-center">
-              <Activity size={10} className="text-primary" /> Privacy-First Local Sandbox Core
-            </span>
-          </motion.div>
+          {!isHomePage && (
+            <motion.div
+              initial={{ scale: 0.9, opacity: 0 }} animate={{ scale: 1, opacity: 1 }}
+              className="inline-block mb-4 px-5 py-1.5 rounded-full bg-white/5 border border-white/10 backdrop-blur-xl"
+            >
+              <span className="text-[9px] font-black tracking-[0.3em] text-primary uppercase flex items-center gap-2 justify-center">
+                <Activity size={10} className="text-primary" /> Privacy-First Local Sandbox Core
+              </span>
+            </motion.div>
+          )}
           <motion.h1
             initial={{ y: 20, opacity: 0 }} animate={{ y: 0, opacity: 1 }}
             className="text-3xl md:text-5xl font-black tracking-tighter mb-4 leading-none text-white uppercase"
@@ -328,8 +333,8 @@ export default function WorkspaceLayout({
           </p>
         </section>
 
-        {/* Dynamic Workspace Workspace Section */}
-        <section className="relative z-10 grid grid-cols-1 xl:grid-cols-[1fr_auto_1fr] gap-8 items-start mb-16">
+        {/* Dynamic Workspace Section */}
+        <section className="relative z-10 flex flex-col xl:grid xl:grid-cols-[1fr_auto_1fr] gap-4 xl:gap-8 items-stretch mb-16">
           
           {/* LEFT INPUT COLUMN */}
           <div 
@@ -337,27 +342,27 @@ export default function WorkspaceLayout({
             onDragOver={handleDrag}
             onDragLeave={handleDrag}
             onDrop={handleDrop}
-            className={`glass-panel rounded-[40px] overflow-hidden flex flex-col h-[550px] md:h-[750px] relative group border shadow-2xl transition-all ${
+            className={`glass-panel rounded-[28px] md:rounded-[40px] overflow-hidden flex flex-col h-[380px] md:h-[600px] xl:h-[750px] relative group border shadow-2xl transition-all min-w-0 ${
               dragActive ? 'border-primary bg-primary/5 shadow-[0_0_30px_rgba(56,189,248,0.2)]' : 'border-white/10'
             }`}
           >
-            <div className="p-6 flex justify-between items-center border-b border-white/10 bg-white/5">
-              <div className="flex items-center gap-4">
-                <div className="flex gap-1.5 shrink-0">
+            <div className="p-3 md:p-6 flex justify-between items-center border-b border-white/10 bg-white/5 gap-2">
+              <div className="flex items-center gap-2 md:gap-4 min-w-0">
+                <div className="hidden sm:flex gap-1.5 shrink-0">
                   <div className="w-3 h-3 rounded-full bg-red-500/50 border border-red-500/20" />
                   <div className="w-3 h-3 rounded-full bg-yellow-500/50 border border-yellow-500/20" />
                   <div className="w-3 h-3 rounded-full bg-green-500/50 border border-green-500/20" />
                 </div>
-                <span className="ml-2 text-[10px] font-black tracking-[0.3em] text-primary/80 uppercase truncate max-w-[120px] md:max-w-none">
+                <span className="text-[9px] md:text-[10px] font-black tracking-[0.2em] md:tracking-[0.3em] text-primary/80 uppercase truncate max-w-[80px] sm:max-w-[120px] md:max-w-none">
                   {inputLabel}
                 </span>
                 <button
                   onClick={handleLoadSample}
-                  className="px-2.5 py-1 rounded bg-primary/10 hover:bg-primary/20 text-primary text-[8px] font-black tracking-widest uppercase transition-all border border-primary/20 hover:scale-105"
+                  className="hidden sm:block px-2 py-1 rounded bg-primary/10 hover:bg-primary/20 text-primary text-[8px] font-black tracking-widest uppercase transition-all border border-primary/20 hover:scale-105 shrink-0"
                   title="Load dummy JSON for testing"
                   suppressHydrationWarning={true}
                 >
-                  Test Sample
+                  Sample
                 </button>
                 {isLargeFile && (
                   <span className="text-[8px] font-black tracking-widest bg-amber-500/10 text-amber-400 px-2 py-0.5 rounded-full border border-amber-500/20 uppercase">
@@ -365,32 +370,32 @@ export default function WorkspaceLayout({
                   </span>
                 )}
               </div>
-              <div className="flex gap-2">
+              <div className="flex gap-1 md:gap-2 shrink-0">
                 <button 
                   onClick={() => setHistoryOpen(!historyOpen)} 
                   title="View past sessions history"
-                  className={`p-3 rounded-xl transition-all shrink-0 ${historyOpen ? 'bg-primary text-black' : 'bg-white/5 hover:bg-white/10 text-slate-400 hover:text-primary'}`}
+                  className={`p-2 md:p-3 rounded-xl transition-all shrink-0 ${historyOpen ? 'bg-primary text-black' : 'bg-white/5 hover:bg-white/10 text-slate-400 hover:text-primary'}`}
                   suppressHydrationWarning={true}
                 >
-                  <History size={16} />
+                  <History size={15} />
                 </button>
                 {onRepair && (
                   <button 
                     onClick={onRepair} 
                     title="Auto-repair code errors"
-                    className="p-3 rounded-xl bg-white/5 hover:bg-white/10 text-slate-400 hover:text-accent transition-all shrink-0"
+                    className="p-2 md:p-3 rounded-xl bg-white/5 hover:bg-white/10 text-slate-400 hover:text-accent transition-all shrink-0"
                     suppressHydrationWarning={true}
                   >
-                    <Wand2 size={16} />
+                    <Wand2 size={15} />
                   </button>
                 )}
                 <button 
                   onClick={() => fileInputRef.current?.click()} 
                   title="Import configuration file"
-                  className="p-3 rounded-xl bg-white/5 hover:bg-white/10 text-slate-400 hover:text-primary transition-all shrink-0"
+                  className="hidden sm:block p-2 md:p-3 rounded-xl bg-white/5 hover:bg-white/10 text-slate-400 hover:text-primary transition-all shrink-0"
                   suppressHydrationWarning={true}
                 >
-                  <Upload size={16} />
+                  <Upload size={15} />
                 </button>
                 <input 
                   type="file" 
@@ -402,19 +407,19 @@ export default function WorkspaceLayout({
                 <button 
                   onClick={() => handleCopy('input')} 
                   title="Copy original code"
-                  className="p-3 rounded-xl bg-white/5 hover:bg-white/10 text-slate-400 hover:text-primary transition-all shrink-0"
+                  className="p-2 md:p-3 rounded-xl bg-white/5 hover:bg-white/10 text-slate-400 hover:text-primary transition-all shrink-0"
                   suppressHydrationWarning={true}
                 >
-                  {copied.input ? <Check size={16} className="text-success" /> : <Copy size={16} />}
+                  {copied.input ? <Check size={15} className="text-success" /> : <Copy size={15} />}
                 </button>
                 {onClear && (
                   <button 
                     onClick={onClear} 
                     title="Clear panel input"
-                    className="p-3 rounded-xl bg-white/5 hover:bg-red-500/20 text-slate-400 hover:text-red-400 transition-all shrink-0"
+                    className="p-2 md:p-3 rounded-xl bg-white/5 hover:bg-red-500/20 text-slate-400 hover:text-red-400 transition-all shrink-0"
                     suppressHydrationWarning={true}
                   >
-                    <Trash2 size={16} />
+                    <Trash2 size={15} />
                   </button>
                 )}
               </div>
@@ -539,20 +544,21 @@ export default function WorkspaceLayout({
             )}
           </div>
 
-          {/* MIDDLE COLUMN CONTROLS */}
-          <div className="flex xl:flex-col gap-4 justify-center py-4 xl:py-24 z-10">
+          {/* MIDDLE COLUMN CONTROLS — scrollable horizontal strip on mobile, vertical on xl */}
+          <div className="workspace-controls-strip">
             {controls}
           </div>
 
           {/* RIGHT OUTPUT COLUMN */}
-          <div className="glass-panel rounded-[40px] overflow-hidden flex flex-col h-[550px] md:h-[750px] border border-white/10 shadow-2xl">
-            <div className="flex border-b border-white/10 bg-white/5 p-2 overflow-x-auto shrink-0 custom-scrollbar">
+          <div className="glass-panel rounded-[28px] md:rounded-[40px] overflow-hidden flex flex-col h-[380px] md:h-[600px] xl:h-[750px] border border-white/10 shadow-2xl min-w-0">
+            {/* TAB BAR — horizontally scrollable, no wrap */}
+            <div className="flex border-b border-white/10 bg-white/5 shrink-0 overflow-x-auto custom-scrollbar" style={{ scrollbarWidth: 'none' }}>
               {tabs.map((tab) => (
                 <button
                   key={tab}
                   onClick={() => onTabChange(tab)}
-                  className={`flex-1 min-w-[80px] py-4 text-[10px] font-black tracking-[0.3em] uppercase transition-all rounded-2xl relative ${
-                    activeTab === tab ? 'text-primary bg-primary/10 shadow-inner' : 'text-slate-400 hover:text-white hover:bg-white/5'
+                  className={`shrink-0 px-4 py-3.5 text-[9px] md:text-[10px] font-black tracking-[0.25em] uppercase transition-all relative whitespace-nowrap ${
+                    activeTab === tab ? 'text-primary bg-primary/10' : 'text-slate-400 hover:text-white hover:bg-white/5'
                   }`}
                   suppressHydrationWarning={true}
                 >
@@ -560,7 +566,7 @@ export default function WorkspaceLayout({
                   {activeTab === tab && (
                     <motion.div 
                       layoutId="tab-underline-workspace" 
-                      className="absolute bottom-2 left-1/2 -translate-x-1/2 w-1.5 h-1.5 rounded-full bg-primary" 
+                      className="absolute bottom-1.5 left-1/2 -translate-x-1/2 w-1.5 h-1.5 rounded-full bg-primary" 
                     />
                   )}
                 </button>
@@ -578,43 +584,43 @@ export default function WorkspaceLayout({
               )}
             </div>
 
-            <div className="p-6 bg-white/5 border-t border-white/10 flex flex-col md:flex-row justify-between items-center gap-4 shrink-0">
-              <div className="flex flex-wrap gap-6 text-[10px] font-black tracking-[0.2em] text-slate-500 font-mono uppercase">
+            <div className="p-3 md:p-5 bg-white/5 border-t border-white/10 flex flex-col sm:flex-row justify-between items-center gap-3 shrink-0">
+              <div className="flex flex-wrap gap-3 md:gap-6 text-[9px] font-black tracking-[0.2em] text-slate-500 font-mono uppercase w-full sm:w-auto">
                 <div className="flex flex-col">
-                  <span className="text-primary opacity-50 mb-1">MEM_SIZE</span> 
-                  <span className="text-white text-xs">{(new Blob([outputValue || inputValue]).size / 1024).toFixed(2)} KB</span>
+                  <span className="text-primary opacity-50 mb-1">MEM</span> 
+                  <span className="text-white text-[10px]">{(new Blob([outputValue || inputValue]).size / 1024).toFixed(1)} KB</span>
                 </div>
                 <div className="flex flex-col">
                   <span className="text-accent opacity-50 mb-1">LINES</span> 
-                  <span className="text-white text-xs">{finalStats.lines}</span>
+                  <span className="text-white text-[10px]">{finalStats.lines}</span>
                 </div>
                 {finalStats.nodes > 0 && (
                   <div className="flex flex-col">
                     <span className="text-success opacity-50 mb-1">NODES</span> 
-                    <span className="text-white text-xs">{finalStats.nodes}</span>
+                    <span className="text-white text-[10px]">{finalStats.nodes}</span>
                   </div>
                 )}
                 {latency > 0 && (
                   <div className="flex flex-col">
-                    <span className="text-amber-500 opacity-50 mb-1">RENDER_TIME</span> 
-                    <span className="text-white text-xs">{latency} ms</span>
+                    <span className="text-amber-500 opacity-50 mb-1">MS</span> 
+                    <span className="text-white text-[10px]">{latency}</span>
                   </div>
                 )}
               </div>
-              <div className="flex gap-3 w-full md:w-auto">
+              <div className="flex gap-2 w-full sm:w-auto">
                 <button 
                   onClick={handleDownload} 
-                  className="flex-1 md:flex-none flex items-center justify-center gap-2.5 px-6 py-3.5 rounded-2xl bg-white/5 hover:bg-white/10 text-[10px] font-black tracking-widest transition-all border border-white/10 text-white"
+                  className="flex-1 sm:flex-none flex items-center justify-center gap-2 px-4 py-3 rounded-2xl bg-white/5 hover:bg-white/10 text-[9px] font-black tracking-widest transition-all border border-white/10 text-white"
                   suppressHydrationWarning={true}
                 >
-                  <Download size={14} /> DOWNLOAD
+                  <Download size={13} /> DL
                 </button>
                 <button 
                   onClick={() => handleCopy('output')} 
-                  className="flex-1 md:flex-none flex items-center justify-center gap-2.5 px-6 py-3.5 rounded-2xl bg-primary text-black text-[10px] font-black tracking-widest transition-all shadow-[0_0_20px_rgba(56,189,248,0.3)] hover:scale-105"
+                  className="flex-1 sm:flex-none flex items-center justify-center gap-2 px-4 py-3 rounded-2xl bg-primary text-black text-[9px] font-black tracking-widest transition-all hover:opacity-90 active:scale-95"
                   suppressHydrationWarning={true}
                 >
-                  <Copy size={14} /> {copied.output ? 'SYNCED' : 'COPY'}
+                  <Copy size={13} /> {copied.output ? 'COPIED' : 'COPY'}
                 </button>
               </div>
             </div>

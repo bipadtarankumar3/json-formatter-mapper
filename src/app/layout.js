@@ -6,6 +6,7 @@ import { GoogleAnalytics } from '@next/third-parties/google';
 
 
 export const metadata = {
+  metadataBase: new URL('https://jsonformatter.revoxera.com'),
   title: 'JSON Formatter & Mapper | The Ultimate Online JSON Tool',
   description: 'Format, minify, and map your JSON effortlessly with our premium tool. Free, fast, and secure JSON transformation for developers.',
   keywords: 'json formatter, json beautifier, json minifier, json mapper, json to yaml, online json tool, json validator',

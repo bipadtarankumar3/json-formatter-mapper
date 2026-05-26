@@ -5,22 +5,24 @@ import { GitBranch, X as XIcon, Link2, PlaySquare, Cpu, Radio, Activity, Termina
 import Link from "next/link";
 
 const FOOTER_LINKS = {
-  "Tools": [
-    { label: "AI Prompt Generator", href: "http://aiprompt.revoxera.com" },
-    { label: "SQL Formatter", href: "http://sqlformatter.revoxera.com" },
-    { label: "JSON Formatter", href: "http://jsonformatter.revoxera.com" },
-    { label: "Color Code Tool", href: "http://colorcode.revoxera.com" },
-    { label: "Case Converter", href: "http://caseconverter.revoxera.com" },
+  "JSON Tools": [
+    { label: "JSON Formatter", href: "/json-formatter" },
+    { label: "JSON Validator", href: "/json-validator" },
+    { label: "JSON Tree Viewer", href: "/json-viewer" },
+    { label: "JSON Compare", href: "/json-compare" },
+    { label: "JSON Editor", href: "/json-editor" },
+    { label: "API Response Viewer", href: "/api-response-viewer" },
+    { label: "View All Tools", href: "/tools" },
   ],
   "Company": [
     { label: "About Us", href: "/about" },
-    // { label: "Careers", href: "/careers" },
-    // { label: "Our Blog", href: "/blog" },
-    { label: "Affiliates", href: "#" },
+    { label: "Contact Us", href: "/contact" },
+    { label: "Developer Blog", href: "/blog" },
   ],
   "Legal": [
-    { label: "Privacy Policy", href: "/privacy" },
-    { label: "Terms & Conditions", href: "/terms" },
+    { label: "Privacy Policy", href: "/privacy-policy" },
+    { label: "Terms & Conditions", href: "/terms-and-conditions" },
+    { label: "Disclaimer", href: "/disclaimer" },
   ],
 };
 

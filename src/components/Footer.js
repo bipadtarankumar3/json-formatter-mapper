@@ -13,6 +13,7 @@ const FOOTER_LINKS = {
     { label: "Case Converter", href: "http://caseconverter.revoxera.com" },
   ],
   "Company": [
+    { label: "About Us", href: "/about" },
     // { label: "Careers", href: "/careers" },
     // { label: "Our Blog", href: "/blog" },
     { label: "Affiliates", href: "#" },

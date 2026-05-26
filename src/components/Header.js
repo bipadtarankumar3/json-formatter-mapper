@@ -47,7 +47,7 @@ const MEGA_MENU_CATEGORIES = [
   },
   {
     title: "Developers Sandbox",
-    color: "text-amber-500",
+    color: "text-primary",
     items: [
       { name: 'API Response Tester', href: '/api-response-viewer', desc: 'Bypass CORS browser limits', icon: 'Globe' },
       { name: 'Developer Manifesto', href: '/about', desc: 'Revoxera open-source core', icon: 'Sparkles' },
@@ -105,7 +105,7 @@ export default function Header() {
 
   return (
     <>
-      <header className="sticky top-0 z-[100] h-[70px] md:h-[90px] flex items-center bg-[#020617]/70 backdrop-blur-xl border-b border-white/10" role="banner">
+      <header className="sticky top-0 z-[100] h-[70px] flex items-center bg-background/70 backdrop-blur-xl border-b border-border/40" role="banner">
         <div className="container mx-auto px-4 md:px-6 flex justify-between items-center w-full relative h-full">
           
           {/* LOGO */}
@@ -250,107 +250,145 @@ export default function Header() {
           </AnimatePresence>
         </div>
 
-        {/* MOBILE MENU */}
-        {isMenuOpen && (
-          <nav className="md:hidden fixed top-[70px] left-0 w-full h-[calc(100vh-70px)] bg-[#020617]/98 border-b border-white/10 p-6 flex flex-col gap-4 z-[999] shadow-2xl overflow-y-auto custom-scrollbar" role="navigation" aria-label="Mobile Navigation">
-            {/* SEARCH FOR MOBILE */}
-            <div className="relative group w-full mb-2">
-              <Search className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-500 group-focus-within:text-primary transition-colors" size={14} />
-              <input
-                type="text"
-                placeholder="Search tools or pages..."
-                className="w-full bg-white/5 border border-white/10 rounded-2xl py-3 pl-12 pr-4 text-xs font-mono outline-none focus:border-primary/50 text-white"
-                onClick={() => {
-                  setIsMenuOpen(false);
-                  setIsPaletteOpen(true);
-                }}
-                readOnly
+        {/* MOBILE MENU — AnimatePresence driven slide-down */}
+        <AnimatePresence>
+          {isMenuOpen && (
+            <>
+              {/* Backdrop overlay */}
+              <motion.div
+                key="mobile-backdrop"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                transition={{ duration: 0.2 }}
+                className="md:hidden fixed inset-0 top-[70px] bg-black/60 z-[90]"
+                onClick={() => setIsMenuOpen(false)}
               />
-            </div>
+              {/* Drawer */}
+              <motion.nav
+                key="mobile-nav"
+                initial={{ opacity: 0, y: -16 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -16 }}
+                transition={{ duration: 0.22, ease: 'easeOut' }}
+                className="mobile-nav-menu md:hidden fixed top-[70px] left-0 right-0 max-h-[calc(100vh-70px)] border-b border-border/40 p-5 flex flex-col gap-4 z-[95] shadow-2xl overflow-y-auto custom-scrollbar"
+                role="navigation"
+                aria-label="Mobile Navigation"
+              >
+                {/* SEARCH FOR MOBILE */}
+                <div className="relative group w-full">
+                  <Search className="absolute left-4 top-1/2 -translate-y-1/2 text-muted group-focus-within:text-primary transition-colors" size={14} />
+                  <input
+                    type="text"
+                    placeholder="Search tools or pages..."
+                    className="w-full bg-secondary border border-border/50 rounded-2xl py-3 pl-12 pr-4 text-xs font-mono outline-none focus:border-primary/50 text-foreground placeholder-muted"
+                    onClick={() => {
+                      setIsMenuOpen(false);
+                      setIsPaletteOpen(true);
+                    }}
+                    readOnly
+                  />
+                </div>
 
-            {/* Mobile collapsible Categories */}
-            <div className="space-y-3">
-              <div className="text-[10px] font-black text-slate-500 tracking-widest uppercase mb-1">Modules Index</div>
-              {MEGA_MENU_CATEGORIES.map((category, idx) => {
-                const isOpen = !!mobileCategoryOpen[idx];
-                return (
-                  <div key={idx} className="flex flex-col">
-                    <button
-                      onClick={() => toggleMobileCategory(idx)}
-                      className="w-full text-left py-3 px-4 rounded-xl bg-white/5 text-xs font-bold text-slate-300 hover:text-white hover:bg-white/10 transition-all uppercase tracking-wider flex justify-between items-center"
-                      suppressHydrationWarning={true}
-                    >
-                      <span className="flex items-center gap-2">
-                        <div className={`w-1.5 h-1.5 rounded-full ${idx === 0 ? 'bg-primary' : idx === 1 ? 'bg-accent' : idx === 2 ? 'bg-success' : 'bg-amber-500'}`} />
-                        {category.title}
-                      </span>
-                      <ChevronDown size={14} className={`transition-transform duration-200 ${isOpen ? 'rotate-180 text-primary' : 'text-slate-500'}`} />
-                    </button>
-                    <AnimatePresence>
-                      {isOpen && (
-                        <motion.div
-                          initial={{ height: 0, opacity: 0 }}
-                          animate={{ height: 'auto', opacity: 1 }}
-                          exit={{ height: 0, opacity: 0 }}
-                          className="overflow-hidden border-l border-white/10 ml-4 pl-3 py-2 flex flex-col gap-2"
+                {/* Mobile collapsible Categories */}
+                <div className="space-y-2">
+                  <div className="text-[10px] font-black text-muted tracking-widest uppercase px-1 pb-1">All Modules</div>
+                  {MEGA_MENU_CATEGORIES.map((category, idx) => {
+                    const isOpen = !!mobileCategoryOpen[idx];
+                    const dotColor = idx === 0 ? 'bg-primary' : idx === 1 ? 'bg-accent' : idx === 2 ? 'bg-success' : 'bg-primary';
+                    return (
+                      <div key={idx} className="rounded-2xl border border-border/30 overflow-hidden">
+                        <button
+                          onClick={() => toggleMobileCategory(idx)}
+                          className="w-full text-left py-3 px-4 bg-secondary/60 text-xs font-bold text-foreground hover:text-primary hover:bg-secondary transition-all uppercase tracking-wider flex justify-between items-center"
+                          suppressHydrationWarning={true}
                         >
-                          {category.items.map((item, itemIdx) => {
-                            const IconComp = iconMap[item.icon] || Play;
-                            return (
-                              <a
-                                key={itemIdx}
-                                href={item.href}
-                                onClick={() => setIsMenuOpen(false)}
-                                className="flex items-center gap-3 py-1.5 px-3 rounded-lg hover:bg-white/5 text-slate-400 hover:text-white transition-all text-xs"
-                              >
-                                <IconComp size={12} className="text-slate-500 shrink-0" />
-                                <span>{item.name}</span>
-                              </a>
-                            );
-                          })}
-                        </motion.div>
-                      )}
-                    </AnimatePresence>
-                  </div>
-                );
-              })}
-            </div>
+                          <span className="flex items-center gap-2.5">
+                            <div className={`w-2 h-2 rounded-full ${dotColor} shrink-0`} />
+                            {category.title}
+                          </span>
+                          <ChevronDown size={14} className={`transition-transform duration-200 shrink-0 ${isOpen ? 'rotate-180 text-primary' : 'text-muted'}`} />
+                        </button>
+                        <AnimatePresence>
+                          {isOpen && (
+                            <motion.div
+                              initial={{ height: 0, opacity: 0 }}
+                              animate={{ height: 'auto', opacity: 1 }}
+                              exit={{ height: 0, opacity: 0 }}
+                              transition={{ duration: 0.18 }}
+                              className="overflow-hidden"
+                            >
+                              <div className="px-3 py-2 flex flex-col gap-1 bg-secondary/30 border-t border-border/20">
+                                {category.items.map((item, itemIdx) => {
+                                  const IconComp = iconMap[item.icon] || Play;
+                                  return (
+                                    <a
+                                      key={itemIdx}
+                                      href={item.href}
+                                      onClick={() => setIsMenuOpen(false)}
+                                      className="flex items-center gap-3 py-2.5 px-3 rounded-xl hover:bg-primary/5 hover:border-primary/20 border border-transparent text-muted hover:text-foreground transition-all text-xs"
+                                    >
+                                      <IconComp size={13} className="shrink-0 text-primary/60" />
+                                      <span className="font-medium">{item.name}</span>
+                                    </a>
+                                  );
+                                })}
+                              </div>
+                            </motion.div>
+                          )}
+                        </AnimatePresence>
+                      </div>
+                    );
+                  })}
+                </div>
 
-            <div className="border-t border-white/10 my-4" />
+                <div className="border-t border-border/40" />
 
-            <div className="space-y-2">
-              <a 
-                href="/blog" 
-                onClick={() => setIsMenuOpen(false)}
-                className="py-3 px-4 rounded-xl bg-white/5 text-sm font-bold text-slate-300 hover:text-white hover:bg-white/10 transition-all uppercase tracking-wider flex items-center gap-2"
-              >
-                <BookOpen size={14} /> Blog Articles
-              </a>
-              <a 
-                href="/about" 
-                onClick={() => setIsMenuOpen(false)}
-                className="py-3 px-4 rounded-xl bg-white/5 text-sm font-bold text-slate-300 hover:text-white hover:bg-white/10 transition-all uppercase tracking-wider"
-              >
-                Manifesto & About
-              </a>
-              <a 
-                href="/contact" 
-                onClick={() => setIsMenuOpen(false)}
-                className="py-3 px-4 rounded-xl bg-white/5 text-sm font-bold text-slate-300 hover:text-white hover:bg-white/10 transition-all uppercase tracking-wider"
-              >
-                Contact Us
-              </a>
-              <a 
-                href="https://github.com" 
-                target="_blank" 
-                rel="noopener noreferrer" 
-                className="py-3 px-4 rounded-xl bg-primary text-black font-black text-sm uppercase tracking-widest text-center flex items-center justify-center gap-2"
-              >
-                <CodeXml size={16} /> Star on GitHub
-              </a>
-            </div>
-          </nav>
-        )}
+                <div className="grid grid-cols-2 gap-2">
+                  <a
+                    href="/blog"
+                    onClick={() => setIsMenuOpen(false)}
+                    className="py-3 px-4 rounded-xl bg-secondary border border-border/30 text-xs font-bold text-foreground hover:text-primary hover:border-primary/30 transition-all uppercase tracking-wider flex items-center gap-2"
+                  >
+                    <BookOpen size={13} /> Blog
+                  </a>
+                  <a
+                    href="/about"
+                    onClick={() => setIsMenuOpen(false)}
+                    className="py-3 px-4 rounded-xl bg-secondary border border-border/30 text-xs font-bold text-foreground hover:text-primary hover:border-primary/30 transition-all uppercase tracking-wider"
+                  >
+                    About
+                  </a>
+                  <a
+                    href="/contact"
+                    onClick={() => setIsMenuOpen(false)}
+                    className="py-3 px-4 rounded-xl bg-secondary border border-border/30 text-xs font-bold text-foreground hover:text-primary hover:border-primary/30 transition-all uppercase tracking-wider"
+                  >
+                    Contact
+                  </a>
+                  <a
+                    href="https://revoxera.com/services"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    onClick={() => setIsMenuOpen(false)}
+                    className="py-3 px-4 rounded-xl bg-secondary border border-border/30 text-xs font-bold text-foreground hover:text-primary hover:border-primary/30 transition-all uppercase tracking-wider"
+                  >
+                    Services
+                  </a>
+                </div>
+
+                <a
+                  href="https://github.com"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="py-3.5 px-4 rounded-2xl bg-primary text-black font-black text-sm uppercase tracking-widest text-center flex items-center justify-center gap-2 hover:opacity-90 active:scale-95 transition-all duration-200"
+                >
+                  <CodeXml size={16} /> Star on GitHub
+                </a>
+              </motion.nav>
+            </>
+          )}
+        </AnimatePresence>
       </header>
 
       {/* COMMAND PALETTE POPUP */}

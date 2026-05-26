@@ -7,23 +7,24 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        background: "#020617",
-        foreground: "#f8fafc",
+        background: "var(--background)",
+        foreground: "var(--foreground)",
         primary: {
-          DEFAULT: "#38bdf8",
-          glow: "rgba(56, 189, 248, 0.4)",
+          DEFAULT: "var(--primary)",
+          glow: "var(--primary-glow)",
         },
-        secondary: "#0f172a",
+        secondary: "var(--secondary)",
         accent: {
-          DEFAULT: "#8b5cf6",
-          glow: "rgba(139, 92, 246, 0.4)",
+          DEFAULT: "var(--accent)",
+          glow: "var(--accent-glow)",
         },
-        success: "#10b981",
-        muted: "#94a3b8",
+        success: "var(--success)",
+        muted: "var(--text-muted)",
         glass: {
-          DEFAULT: "rgba(15, 23, 42, 0.7)",
-          border: "rgba(255, 255, 255, 0.08)",
-        }
+          DEFAULT: "var(--glass)",
+          border: "var(--glass-border)",
+        },
+        border: "var(--border)",
       },
       boxShadow: {
         premium: "0 0 50px -12px rgba(0, 0, 0, 0.5)",

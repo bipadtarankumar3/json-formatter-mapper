@@ -86,7 +86,7 @@ export default function RootLayout({ children }) {
         <div className="bg-blob blob-1"></div>
         <div className="bg-blob blob-2"></div>
         <div className="bg-blob blob-3"></div>
-        
+
         <Header />
 
         <main className="main-content" id="main-content">
@@ -95,7 +95,7 @@ export default function RootLayout({ children }) {
 
         <Footer />
 
-        <GoogleAnalytics gaId="G-MQEWLCWPRN" />
+        <GoogleAnalytics gaId="G-2Y0DSV87D7" />
       </body>
     </html>
   );

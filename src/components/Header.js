@@ -163,7 +163,7 @@ export default function Header() {
                 Services
               </a>
               <a 
-                href="https://github.com" 
+                href="https://github.com/revoxera" 
                 target="_blank" 
                 rel="noopener noreferrer" 
                 className="flex items-center gap-2 bg-white/5 hover:bg-white/10 px-4 py-2.5 rounded-2xl border border-white/10 hover:border-primary transition-all font-bold text-xs uppercase"
@@ -378,7 +378,7 @@ export default function Header() {
                 </div>
 
                 <a
-                  href="https://github.com"
+                  href="https://github.com/revoxera"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="py-3.5 px-4 rounded-2xl bg-primary text-black font-black text-sm uppercase tracking-widest text-center flex items-center justify-center gap-2 hover:opacity-90 active:scale-95 transition-all duration-200"

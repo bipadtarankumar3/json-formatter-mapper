@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { GitBranch, X as XIcon, Link2, PlaySquare, Radio, Mail, Terminal, Shield, ArrowRight } from "lucide-react";
+import { GitBranch, X as XIcon, Link2, Radio, Mail, Terminal, Shield, ArrowRight } from "lucide-react";
 import Link from "next/link";
 
 const FOOTER_LINKS = {
@@ -14,10 +14,11 @@ const FOOTER_LINKS = {
     { label: "API Response Viewer", href: "/api-response-viewer" },
     { label: "View All Tools →", href: "/tools" },
   ],
-  "Company": [
+  "Resources": [
+    { label: "What is JSON Schema?", href: "/guides/what-is-json-schema" },
+    { label: "JSON vs YAML Guide", href: "/guides/json-vs-yaml" },
     { label: "About Us", href: "/about" },
     { label: "Contact Us", href: "/contact" },
-    { label: "Developer Blog", href: "/blog" },
   ],
   "Legal": [
     { label: "Privacy Policy", href: "/privacy-policy" },
@@ -35,10 +36,9 @@ const COMPANY_TOOLS = [
 ];
 
 const SOCIAL = [
-  { icon: <XIcon className="w-4 h-4" />, href: "#", label: "X (Twitter)" },
-  { icon: <GitBranch className="w-4 h-4" />, href: "https://github.com", label: "GitHub" },
-  { icon: <Link2 className="w-4 h-4" />, href: "#", label: "LinkedIn" },
-  { icon: <PlaySquare className="w-4 h-4" />, href: "#", label: "YouTube" },
+  { icon: <XIcon className="w-4 h-4" />, href: "https://x.com/revoxera", label: "X (Twitter)" },
+  { icon: <GitBranch className="w-4 h-4" />, href: "https://github.com/revoxera", label: "GitHub" },
+  { icon: <Link2 className="w-4 h-4" />, href: "https://www.linkedin.com/in/revoxera-digital", label: "LinkedIn" },
 ];
 
 export default function Footer() {
@@ -163,6 +163,8 @@ export default function Footer() {
                 <a
                   key={s.label}
                   href={s.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
                   aria-label={s.label}
                   className="footer-social-btn w-9 h-9 rounded-xl flex items-center justify-center transition-all duration-200 hover:scale-110"
                 >

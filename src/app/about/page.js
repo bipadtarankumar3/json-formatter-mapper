@@ -267,7 +267,7 @@ export default function AboutPage() {
               Open Workspace
             </Link>
             <a 
-              href="https://github.com" 
+              href="https://github.com/revoxera" 
               target="_blank" 
               rel="noopener noreferrer" 
               className="px-8 py-4 rounded-2xl bg-white/5 hover:bg-white/10 text-[10px] font-black tracking-widest transition-all border border-white/10 text-white uppercase"

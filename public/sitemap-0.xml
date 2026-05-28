@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:news="http://www.google.com/schemas/sitemap-news/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:mobile="http://www.google.com/schemas/sitemap-mobile/1.0" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1" xmlns:video="http://www.google.com/schemas/sitemap-video/1.1">
+<url><loc>https://jsonformatter.revoxera.com</loc><lastmod>2026-05-28T17:38:40.373Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+<url><loc>https://jsonformatter.revoxera.com/about</loc><lastmod>2026-05-28T17:38:40.373Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+<url><loc>https://jsonformatter.revoxera.com/api-response-viewer</loc><lastmod>2026-05-28T17:38:40.373Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+<url><loc>https://jsonformatter.revoxera.com/blog</loc><lastmod>2026-05-28T17:38:40.373Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+<url><loc>https://jsonformatter.revoxera.com/blog/common-json-errors</loc><lastmod>2026-05-28T17:38:40.373Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+<url><loc>https://jsonformatter.revoxera.com/blog/json-formatting-best-practices</loc><lastmod>2026-05-28T17:38:40.373Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+<url><loc>https://jsonformatter.revoxera.com/blog/json-validation-guide</loc><lastmod>2026-05-28T17:38:40.373Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+<url><loc>https://jsonformatter.revoxera.com/blog/json-vs-xml</loc><lastmod>2026-05-28T17:38:40.373Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+<url><loc>https://jsonformatter.revoxera.com/blog/what-is-json</loc><lastmod>2026-05-28T17:38:40.373Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+<url><loc>https://jsonformatter.revoxera.com/contact</loc><lastmod>2026-05-28T17:38:40.373Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+<url><loc>https://jsonformatter.revoxera.com/csv-to-json</loc><lastmod>2026-05-28T17:38:40.373Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+<url><loc>https://jsonformatter.revoxera.com/disclaimer</loc><lastmod>2026-05-28T17:38:40.373Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+<url><loc>https://jsonformatter.revoxera.com/guides/json-vs-yaml</loc><lastmod>2026-05-28T17:38:40.373Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+<url><loc>https://jsonformatter.revoxera.com/guides/what-is-json-schema</loc><lastmod>2026-05-28T17:38:40.373Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+<url><loc>https://jsonformatter.revoxera.com/icon.png</loc><lastmod>2026-05-28T17:38:40.373Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+<url><loc>https://jsonformatter.revoxera.com/json-compare</loc><lastmod>2026-05-28T17:38:40.373Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+<url><loc>https://jsonformatter.revoxera.com/json-diff</loc><lastmod>2026-05-28T17:38:40.373Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+<url><loc>https://jsonformatter.revoxera.com/json-editor</loc><lastmod>2026-05-28T17:38:40.373Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+<url><loc>https://jsonformatter.revoxera.com/json-escape-unescape</loc><lastmod>2026-05-28T17:38:40.373Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+<url><loc>https://jsonformatter.revoxera.com/json-formatter</loc><lastmod>2026-05-28T17:38:40.373Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+<url><loc>https://jsonformatter.revoxera.com/json-minify</loc><lastmod>2026-05-28T17:38:40.373Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+<url><loc>https://jsonformatter.revoxera.com/json-pretty-print</loc><lastmod>2026-05-28T17:38:40.373Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+<url><loc>https://jsonformatter.revoxera.com/json-to-csv</loc><lastmod>2026-05-28T17:38:40.373Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+<url><loc>https://jsonformatter.revoxera.com/json-to-xml</loc><lastmod>2026-05-28T17:38:40.373Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+<url><loc>https://jsonformatter.revoxera.com/json-to-yaml</loc><lastmod>2026-05-28T17:38:40.373Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+<url><loc>https://jsonformatter.revoxera.com/json-validator</loc><lastmod>2026-05-28T17:38:40.373Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+<url><loc>https://jsonformatter.revoxera.com/json-viewer</loc><lastmod>2026-05-28T17:38:40.373Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+<url><loc>https://jsonformatter.revoxera.com/privacy</loc><lastmod>2026-05-28T17:38:40.373Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+<url><loc>https://jsonformatter.revoxera.com/terms</loc><lastmod>2026-05-28T17:38:40.373Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+<url><loc>https://jsonformatter.revoxera.com/tools</loc><lastmod>2026-05-28T17:38:40.373Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+<url><loc>https://jsonformatter.revoxera.com/xml-to-json</loc><lastmod>2026-05-28T17:38:40.373Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+<url><loc>https://jsonformatter.revoxera.com/yaml-to-json</loc><lastmod>2026-05-28T17:38:40.373Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+</urlset>

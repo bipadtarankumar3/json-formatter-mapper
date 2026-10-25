@@ -51,9 +51,9 @@ const MEGA_MENU_CATEGORIES = [
       badgeClass: "bg-emerald-50 dark:bg-emerald-950/80 text-emerald-700 dark:text-emerald-300 border-emerald-200/80 dark:border-emerald-800/60",
     },
     items: [
-      { name: 'JSON Formatter', href: '/json-formatter', desc: 'Beautify JSON spacing & layouts', icon: Terminal, badge: 'Popular' },
+      { name: 'JSON Formatter', href: '/json-formatter', desc: 'Beautify & indent JSON', icon: Terminal, badge: 'Popular' },
       { name: 'JSON Pretty Print', href: '/json-pretty-print', desc: 'Syntax highlights & sharing', icon: CodeXml },
-      { name: 'JSON Validator', href: '/json-validator', desc: 'Validate syntax & schema errors', icon: ShieldCheck, badge: 'Shield' },
+      { name: 'JSON Validator', href: '/json-validator', desc: 'Syntax & schema checker', icon: ShieldCheck, badge: 'Shield' },
       { name: 'JSON Minifier', href: '/json-minify', desc: 'Compress whitespace & tabs', icon: Zap },
     ]
   },
@@ -69,9 +69,9 @@ const MEGA_MENU_CATEGORIES = [
     },
     items: [
       { name: 'JSON Tree Viewer', href: '/json-viewer', desc: 'Interactive node hierarchy', icon: FolderTree, badge: 'Interactive' },
-      { name: 'JSON Tree Editor', href: '/json-editor', desc: 'Mutate nodes and data text', icon: FileEdit },
-      { name: 'JSON Diff & Compare', href: '/json-compare', desc: 'Compare layouts side-by-side', icon: GitCompare },
-      { name: 'JSON Escape / Unescape', href: '/json-escape-unescape', desc: 'Quotes and slashes converter', icon: Quote },
+      { name: 'JSON Tree Editor', href: '/json-editor', desc: 'Mutate nodes & data keys', icon: FileEdit },
+      { name: 'JSON Diff & Compare', href: '/json-compare', desc: 'Side-by-side comparison', icon: GitCompare },
+      { name: 'JSON Escape / Unescape', href: '/json-escape-unescape', desc: 'Quotes & slashes parser', icon: Quote },
     ]
   },
   {
@@ -86,9 +86,9 @@ const MEGA_MENU_CATEGORIES = [
     },
     items: [
       { name: 'JSON to CSV / Excel', href: '/json-to-csv', desc: 'Flatten objects to tables', icon: FileSpreadsheet },
-      { name: 'JSON to XML / Markup', href: '/json-to-xml', desc: 'Serialize to XML tags', icon: CodeXml },
+      { name: 'JSON to XML / Markup', href: '/json-to-xml', desc: 'Serialize to XML elements', icon: CodeXml },
       { name: 'JSON to YAML / Config', href: '/json-to-yaml', desc: 'Generate YAML properties', icon: Settings2 },
-      { name: 'CSV to JSON Parse', href: '/csv-to-json', desc: 'Tabular spreadsheet parsing', icon: ArrowLeftRight },
+      { name: 'CSV to JSON Parse', href: '/csv-to-json', desc: 'Tabular spreadsheet import', icon: ArrowLeftRight },
     ]
   },
   {
@@ -103,9 +103,9 @@ const MEGA_MENU_CATEGORIES = [
     },
     items: [
       { name: 'HTML Color Codes', href: 'https://colorcode.revoxera.com/', desc: 'OKLCH, HEX & Color Wheel', icon: Palette, isExternal: true },
-      { name: 'CaseConverter Engine', href: 'https://caseconverter.revoxera.com/', desc: '11 Text transformation modes', icon: Type, isExternal: true },
+      { name: 'CaseConverter Engine', href: 'https://caseconverter.revoxera.com/', desc: '11 Text mutation formats', icon: Type, isExternal: true },
       { name: 'SQL Beast Formatter', href: 'https://sqlformatter.revoxera.com/', desc: 'Multi-dialect SQL beautifier', icon: Database, isExternal: true },
-      { name: 'AI Prompt Generator', href: 'https://ai-prompt.revoxera.com/', desc: 'System prompts & token estimator', icon: Sparkles, isExternal: true },
+      { name: 'AI Prompt Generator', href: 'https://ai-prompt.revoxera.com/', desc: 'System prompts & templates', icon: Sparkles, isExternal: true },
     ]
   }
 ];
@@ -264,7 +264,8 @@ export default function Header() {
                     animate={{ opacity: 1, y: 0, scale: 1 }}
                     exit={{ opacity: 0, y: 8, scale: 0.98 }}
                     transition={{ duration: 0.15 }}
-                    className="absolute left-1/2 -translate-x-1/2 top-full mt-2.5 w-[880px] max-w-[calc(100vw-2.5rem)] rounded-2xl bg-white dark:bg-[#0c1018] border border-slate-200/90 dark:border-white/10 shadow-2xl p-5 sm:p-6 z-50 max-h-[calc(100vh-100px)] overflow-y-auto"
+                    style={{ backgroundColor: theme === 'dark' ? '#0c1018' : '#ffffff' }}
+                    className="tools-mega-menu absolute -left-12 sm:-left-20 lg:-left-28 top-[calc(100%+8px)] w-[920px] max-w-[calc(100vw-3rem)] rounded-2xl border border-slate-200/90 dark:border-white/10 shadow-2xl p-5 sm:p-6 z-50 max-h-[calc(100vh-100px)] overflow-y-auto before:absolute before:-top-3 before:left-0 before:right-0 before:h-3 before:content-['']"
                   >
                     <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 lg:gap-5">
                       {MEGA_MENU_CATEGORIES.map((category, idx) => (

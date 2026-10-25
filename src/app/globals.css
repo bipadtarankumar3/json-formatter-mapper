@@ -327,9 +327,21 @@ body {
 
 /* Light mode header style override */
 .light header {
-  background-color: rgba(255, 255, 255, 0.8) !important;
+  background-color: rgba(255, 255, 255, 0.95) !important;
   border-color: rgba(0, 0, 0, 0.08) !important;
   box-shadow: 0 4px 12px -5px rgba(0, 0, 0, 0.05);
+}
+
+.tools-mega-menu {
+  background-color: #ffffff !important;
+  opacity: 1 !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+}
+
+.dark .tools-mega-menu {
+  background-color: #0c1018 !important;
+  opacity: 1 !important;
 }
 
 /* Overrides for hardcoded text-white */

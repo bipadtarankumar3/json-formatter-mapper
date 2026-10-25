@@ -149,8 +149,10 @@ export default function RootLayout({ children }) {
                   const savedTheme = localStorage.getItem('revoxera_theme') || 'dark';
                   if (savedTheme === 'light') {
                     document.documentElement.classList.add('light');
+                    document.documentElement.classList.remove('dark');
                   } else {
                     document.documentElement.classList.remove('light');
+                    document.documentElement.classList.add('dark');
                   }
                 } catch (e) {}
               })();
@@ -174,14 +176,14 @@ export default function RootLayout({ children }) {
           dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
         />
       </head>
-      <body suppressHydrationWarning>
+      <body suppressHydrationWarning className="bg-background text-foreground min-h-screen flex flex-col w-full overflow-x-hidden selection:bg-emerald-500/30">
         <div className="bg-blob blob-1"></div>
         <div className="bg-blob blob-2"></div>
         <div className="bg-blob blob-3"></div>
 
         <Header />
 
-        <main className="main-content" id="main-content">
+        <main className="main-content flex-grow flex flex-col w-full z-10 relative" id="main-content">
           {children}
         </main>
 

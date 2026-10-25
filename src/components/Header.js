@@ -24,7 +24,17 @@ import {
   Sun, 
   Moon,
   ExternalLink,
-  BookOpen
+  BookOpen,
+  FolderTree,
+  FileEdit,
+  GitCompare,
+  Quote,
+  FileSpreadsheet,
+  Settings2,
+  ArrowLeftRight,
+  Palette,
+  Type,
+  Database
 } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import CommandPalette from './CommandPalette';
@@ -32,42 +42,70 @@ import CommandPalette from './CommandPalette';
 const MEGA_MENU_CATEGORIES = [
   {
     title: "Formatters & Linting",
-    color: "text-emerald-600 dark:text-emerald-400",
+    color: "text-emerald-700 dark:text-emerald-400",
+    theme: {
+      headerDot: "bg-emerald-500",
+      iconBg: "bg-emerald-50 dark:bg-emerald-950/60 text-emerald-600 dark:text-emerald-400 border-emerald-200/70 dark:border-emerald-800/60 group-hover/item:bg-emerald-100 dark:group-hover/item:bg-emerald-900/60 group-hover/item:border-emerald-300",
+      hoverBg: "hover:bg-emerald-50/60 dark:hover:bg-emerald-950/30 hover:border-emerald-200/70 dark:hover:border-emerald-800/40",
+      titleHover: "group-hover/item:text-emerald-700 dark:group-hover/item:text-emerald-300",
+      badgeClass: "bg-emerald-50 dark:bg-emerald-950/80 text-emerald-700 dark:text-emerald-300 border-emerald-200/80 dark:border-emerald-800/60",
+    },
     items: [
       { name: 'JSON Formatter', href: '/json-formatter', desc: 'Beautify JSON spacing & layouts', icon: Terminal, badge: 'Popular' },
       { name: 'JSON Pretty Print', href: '/json-pretty-print', desc: 'Syntax highlights & sharing', icon: CodeXml },
-      { name: 'JSON Validator', href: '/json-validator', desc: 'Validate syntax & errors', icon: ShieldCheck, badge: 'Shield' },
+      { name: 'JSON Validator', href: '/json-validator', desc: 'Validate syntax & schema errors', icon: ShieldCheck, badge: 'Shield' },
       { name: 'JSON Minifier', href: '/json-minify', desc: 'Compress whitespace & tabs', icon: Zap },
     ]
   },
   {
     title: "Inspect & Compare",
-    color: "text-indigo-600 dark:text-indigo-400",
+    color: "text-indigo-700 dark:text-indigo-400",
+    theme: {
+      headerDot: "bg-indigo-500",
+      iconBg: "bg-indigo-50 dark:bg-indigo-950/60 text-indigo-600 dark:text-indigo-400 border-indigo-200/70 dark:border-indigo-800/60 group-hover/item:bg-indigo-100 dark:group-hover/item:bg-indigo-900/60 group-hover/item:border-indigo-300",
+      hoverBg: "hover:bg-indigo-50/60 dark:hover:bg-indigo-950/30 hover:border-indigo-200/70 dark:hover:border-indigo-800/40",
+      titleHover: "group-hover/item:text-indigo-700 dark:group-hover/item:text-indigo-300",
+      badgeClass: "bg-indigo-50 dark:bg-indigo-950/80 text-indigo-700 dark:text-indigo-300 border-indigo-200/80 dark:border-indigo-800/60",
+    },
     items: [
-      { name: 'JSON Tree Viewer', href: '/json-viewer', desc: 'Interactive node hierarchy', icon: Brackets, badge: 'Interactive' },
-      { name: 'JSON Tree Editor', href: '/json-editor', desc: 'Mutate nodes and data text', icon: FileCode },
-      { name: 'JSON Diff & Compare', href: '/json-compare', desc: 'Compare layouts side-by-side', icon: Columns },
-      { name: 'JSON Escape / Unescape', href: '/json-escape-unescape', desc: 'Quotes and slashes converter', icon: FileCode },
+      { name: 'JSON Tree Viewer', href: '/json-viewer', desc: 'Interactive node hierarchy', icon: FolderTree, badge: 'Interactive' },
+      { name: 'JSON Tree Editor', href: '/json-editor', desc: 'Mutate nodes and data text', icon: FileEdit },
+      { name: 'JSON Diff & Compare', href: '/json-compare', desc: 'Compare layouts side-by-side', icon: GitCompare },
+      { name: 'JSON Escape / Unescape', href: '/json-escape-unescape', desc: 'Quotes and slashes converter', icon: Quote },
     ]
   },
   {
     title: "Format Converters",
-    color: "text-teal-600 dark:text-teal-400",
+    color: "text-sky-700 dark:text-sky-400",
+    theme: {
+      headerDot: "bg-sky-500",
+      iconBg: "bg-sky-50 dark:bg-sky-950/60 text-sky-600 dark:text-sky-400 border-sky-200/70 dark:border-sky-800/60 group-hover/item:bg-sky-100 dark:group-hover/item:bg-sky-900/60 group-hover/item:border-sky-300",
+      hoverBg: "hover:bg-sky-50/60 dark:hover:bg-sky-950/30 hover:border-sky-200/70 dark:hover:border-sky-800/40",
+      titleHover: "group-hover/item:text-sky-700 dark:group-hover/item:text-sky-300",
+      badgeClass: "bg-sky-50 dark:bg-sky-950/80 text-sky-700 dark:text-sky-300 border-sky-200/80 dark:border-sky-800/60",
+    },
     items: [
-      { name: 'JSON to CSV / Excel', href: '/json-to-csv', desc: 'Flatten objects to tables', icon: FileCode },
-      { name: 'JSON to XML / Markup', href: '/json-to-xml', desc: 'Serialize to XML tags', icon: FileCode },
-      { name: 'JSON to YAML / Config', href: '/json-to-yaml', desc: 'Generate YAML properties', icon: FileCode },
-      { name: 'CSV to JSON Parse', href: '/csv-to-json', desc: 'Tabular spreadsheet parsing', icon: FileCode },
+      { name: 'JSON to CSV / Excel', href: '/json-to-csv', desc: 'Flatten objects to tables', icon: FileSpreadsheet },
+      { name: 'JSON to XML / Markup', href: '/json-to-xml', desc: 'Serialize to XML tags', icon: CodeXml },
+      { name: 'JSON to YAML / Config', href: '/json-to-yaml', desc: 'Generate YAML properties', icon: Settings2 },
+      { name: 'CSV to JSON Parse', href: '/csv-to-json', desc: 'Tabular spreadsheet parsing', icon: ArrowLeftRight },
     ]
   },
   {
     title: "Ecosystem Platforms",
-    color: "text-amber-600 dark:text-amber-400",
+    color: "text-amber-700 dark:text-amber-400",
+    theme: {
+      headerDot: "bg-amber-500",
+      iconBg: "bg-amber-50 dark:bg-amber-950/60 text-amber-600 dark:text-amber-400 border-amber-200/70 dark:border-amber-800/60 group-hover/item:bg-amber-100 dark:group-hover/item:bg-amber-900/60 group-hover/item:border-amber-300",
+      hoverBg: "hover:bg-amber-50/60 dark:hover:bg-amber-950/30 hover:border-amber-200/70 dark:hover:border-amber-800/40",
+      titleHover: "group-hover/item:text-amber-700 dark:group-hover/item:text-amber-300",
+      badgeClass: "bg-amber-50 dark:bg-amber-950/80 text-amber-700 dark:text-amber-300 border-amber-200/80 dark:border-amber-800/60",
+    },
     items: [
-      { name: 'HTML Color Codes', href: 'https://colorcode.revoxera.com/', desc: 'OKLCH, HEX & Color Wheel', icon: Sparkles, isExternal: true },
-      { name: 'CaseConverter Engine', href: 'https://caseconverter.revoxera.com/', desc: '11 Text transformation modes', icon: Sparkles, isExternal: true },
-      { name: 'SQL Beast Formatter', href: 'https://sqlformatter.revoxera.com/', desc: 'Multi-dialect SQL beautifier', icon: Terminal, isExternal: true },
-      { name: 'AI Prompt Generator', href: 'https://ai-prompt.revoxera.com/', desc: 'System prompts & token estimator', icon: Zap, isExternal: true },
+      { name: 'HTML Color Codes', href: 'https://colorcode.revoxera.com/', desc: 'OKLCH, HEX & Color Wheel', icon: Palette, isExternal: true },
+      { name: 'CaseConverter Engine', href: 'https://caseconverter.revoxera.com/', desc: '11 Text transformation modes', icon: Type, isExternal: true },
+      { name: 'SQL Beast Formatter', href: 'https://sqlformatter.revoxera.com/', desc: 'Multi-dialect SQL beautifier', icon: Database, isExternal: true },
+      { name: 'AI Prompt Generator', href: 'https://ai-prompt.revoxera.com/', desc: 'System prompts & token estimator', icon: Sparkles, isExternal: true },
     ]
   }
 ];
@@ -222,78 +260,99 @@ export default function Header() {
               <AnimatePresence>
                 {toolsDropdownOpen && (
                   <motion.div
-                    initial={{ opacity: 0, y: 12, scale: 0.98 }}
+                    initial={{ opacity: 0, y: 10, scale: 0.98 }}
                     animate={{ opacity: 1, y: 0, scale: 1 }}
-                    exit={{ opacity: 0, y: 10, scale: 0.98 }}
+                    exit={{ opacity: 0, y: 8, scale: 0.98 }}
                     transition={{ duration: 0.15 }}
-                    className="absolute left-1/2 -translate-x-1/2 top-full mt-2 w-[780px] rounded-3xl bg-white dark:bg-[#0c1018] border border-slate-200 dark:border-white/10 shadow-2xl p-6 z-50 grid grid-cols-4 gap-6"
+                    className="absolute left-1/2 -translate-x-1/2 top-full mt-2.5 w-[880px] max-w-[calc(100vw-2.5rem)] rounded-2xl bg-white dark:bg-[#0c1018] border border-slate-200/90 dark:border-white/10 shadow-2xl p-5 sm:p-6 z-50 max-h-[calc(100vh-100px)] overflow-y-auto"
                   >
-                    {MEGA_MENU_CATEGORIES.map((category, idx) => (
-                      <div key={idx} className="space-y-3">
-                        <div className={`text-[10px] font-black tracking-widest uppercase pb-1.5 border-b border-slate-100 dark:border-white/5 ${category.color}`}>
-                          {category.title}
-                        </div>
-                        <div className="space-y-1">
-                          {category.items.map((item, itemIdx) => {
-                            const IconComp = item.icon;
-                            if (item.isExternal) {
+                    <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 lg:gap-5">
+                      {MEGA_MENU_CATEGORIES.map((category, idx) => (
+                        <div key={idx} className="space-y-2.5">
+                          {/* Category Header */}
+                          <div className="flex items-center gap-1.5 pb-2 border-b border-slate-100 dark:border-white/5">
+                            <span className={`w-2 h-2 rounded-full ${category.theme.headerDot} shadow-2xs`} />
+                            <span className={`text-[10px] font-black tracking-widest uppercase ${category.color}`}>
+                              {category.title}
+                            </span>
+                          </div>
+
+                          {/* Category Items */}
+                          <div className="space-y-1">
+                            {category.items.map((item, itemIdx) => {
+                              const IconComp = item.icon;
+                              const content = (
+                                <div className={`flex items-start gap-2.5 p-2 rounded-xl border border-transparent transition-all duration-150 ${category.theme.hoverBg}`}>
+                                  <div className={`w-7 h-7 rounded-lg border flex items-center justify-center shrink-0 shadow-2xs transition-all duration-150 ${category.theme.iconBg}`}>
+                                    <IconComp size={13} className="transition-transform group-hover/item:scale-110 shrink-0" />
+                                  </div>
+                                  <div className="flex-1 min-w-0">
+                                    <div className="flex items-center justify-between gap-1">
+                                      <span className={`text-[11.5px] font-bold text-slate-800 dark:text-slate-100 transition-colors ${category.theme.titleHover} truncate`}>
+                                        {item.name}
+                                      </span>
+                                      {item.badge && (
+                                        <span className={`text-[8px] font-extrabold uppercase px-1.5 py-0.5 rounded border shrink-0 ${category.theme.badgeClass}`}>
+                                          {item.badge}
+                                        </span>
+                                      )}
+                                      {item.isExternal && (
+                                        <ExternalLink size={10} className="text-slate-400 group-hover/item:text-amber-600 dark:group-hover/item:text-amber-400 shrink-0 transition-colors" />
+                                      )}
+                                    </div>
+                                    <span className="text-[10px] text-slate-500 dark:text-slate-400 leading-snug line-clamp-1 block mt-0.5">
+                                      {item.desc}
+                                    </span>
+                                  </div>
+                                </div>
+                              );
+
+                              if (item.isExternal) {
+                                return (
+                                  <a
+                                    key={itemIdx}
+                                    href={item.href}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className="block group/item cursor-pointer"
+                                  >
+                                    {content}
+                                  </a>
+                                );
+                              }
+
                               return (
-                                <a
+                                <Link
                                   key={itemIdx}
                                   href={item.href}
-                                  target="_blank"
-                                  rel="noopener noreferrer"
-                                  className="flex flex-col p-2 rounded-xl hover:bg-slate-50 dark:hover:bg-white/5 transition-all group/item"
+                                  onClick={() => setToolsDropdownOpen(false)}
+                                  className="block group/item cursor-pointer"
                                 >
-                                  <div className="flex items-center justify-between gap-1">
-                                    <span className="text-xs font-bold text-slate-800 dark:text-slate-200 group-hover/item:text-emerald-600 dark:group-hover/item:text-emerald-400 transition-colors flex items-center gap-1.5">
-                                      <IconComp size={12} className="text-slate-400 group-hover/item:text-emerald-600 shrink-0" />
-                                      {item.name}
-                                    </span>
-                                    <ExternalLink size={10} className="text-slate-400 shrink-0" />
-                                  </div>
-                                  <span className="text-[10px] text-slate-500 dark:text-slate-400 leading-tight mt-0.5 line-clamp-1">
-                                    {item.desc}
-                                  </span>
-                                </a>
+                                  {content}
+                                </Link>
                               );
-                            }
-                            return (
-                              <Link
-                                key={itemIdx}
-                                href={item.href}
-                                onClick={() => setToolsDropdownOpen(false)}
-                                className="flex flex-col p-2 rounded-xl hover:bg-slate-50 dark:hover:bg-white/5 transition-all group/item"
-                              >
-                                <div className="flex items-center justify-between gap-1">
-                                  <span className="text-xs font-bold text-slate-800 dark:text-slate-200 group-hover/item:text-emerald-600 dark:group-hover/item:text-emerald-400 transition-colors flex items-center gap-1.5">
-                                    <IconComp size={12} className="text-slate-400 group-hover/item:text-emerald-600 shrink-0" />
-                                    {item.name}
-                                  </span>
-                                  {item.badge && (
-                                    <span className="text-[8px] font-extrabold uppercase px-1.5 py-0.2 rounded bg-emerald-50 dark:bg-emerald-950/80 text-emerald-700 dark:text-emerald-300 border border-emerald-200/60 dark:border-emerald-800/60">
-                                      {item.badge}
-                                    </span>
-                                  )}
-                                </div>
-                                <span className="text-[10px] text-slate-500 dark:text-slate-400 leading-tight mt-0.5 line-clamp-1">
-                                  {item.desc}
-                                </span>
-                              </Link>
-                            );
-                          })}
+                            })}
+                          </div>
                         </div>
-                      </div>
-                    ))}
+                      ))}
+                    </div>
 
-                    <div className="col-span-4 pt-3 mt-1 border-t border-slate-100 dark:border-white/5 flex items-center justify-between text-xs">
-                      <span className="text-slate-500 text-[11px]">100% In-Browser AST & Local Sandbox Execution</span>
+                    {/* Bottom Banner */}
+                    <div className="pt-3.5 mt-4 border-t border-slate-100 dark:border-white/5 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-2 text-xs">
+                      <div className="flex items-center gap-2 text-slate-500 dark:text-slate-400 text-[11px]">
+                        <span className="relative flex h-2 w-2">
+                          <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+                          <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
+                        </span>
+                        <span className="font-medium">100% In-Browser AST · Zero Server Storage</span>
+                      </div>
                       <Link 
                         href="/tools" 
                         onClick={() => setToolsDropdownOpen(false)}
-                        className="text-emerald-600 font-bold hover:underline flex items-center gap-1"
+                        className="text-xs font-bold text-emerald-600 dark:text-emerald-400 hover:text-emerald-700 dark:hover:text-emerald-300 flex items-center gap-1 group/link cursor-pointer px-2.5 py-1 rounded-lg hover:bg-emerald-50 dark:hover:bg-emerald-950/50 transition-all"
                       >
-                        Explore All 16+ Developer Tools →
+                        <span>Explore All 16+ Developer Tools</span>
+                        <span className="group-hover/link:translate-x-0.5 transition-transform">→</span>
                       </Link>
                     </div>
                   </motion.div>

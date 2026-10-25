@@ -396,12 +396,24 @@ body {
   color: #f1f5f9 !important;
 }
 
-/* Keep white text inside buttons, badges, and actual gradients that are colored/dark in light mode */
+/* Keep white text inside buttons, badges, and dark containers in light mode */
 .light [class*="bg-gradient-to-"].text-white,
 .light [class*="bg-gradient-to-"] .text-white,
 .light .bg-primary.text-black,
 .light button.bg-primary,
-.light button.bg-primary * {
+.light button.bg-primary *,
+.light button.bg-slate-900,
+.light button.bg-slate-900 *,
+.light button.bg-slate-800,
+.light button.bg-slate-800 *,
+.light button.bg-emerald-600,
+.light button.bg-emerald-600 *,
+.light button.bg-emerald-700,
+.light button.bg-emerald-700 *,
+.light button[type="submit"],
+.light button[type="submit"] *,
+.light .keep-white,
+.light .keep-white * {
   color: #ffffff !important;
 }
 

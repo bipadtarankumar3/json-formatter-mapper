@@ -70,10 +70,10 @@ export default function Footer() {
                 />
                 <button
                   type="submit"
-                  className="px-4 py-2.5 rounded-xl bg-slate-900 hover:bg-slate-800 dark:bg-emerald-600 dark:hover:bg-emerald-500 text-white text-xs font-bold shadow-xs hover:shadow transition-all shrink-0 flex items-center justify-center gap-1.5 cursor-pointer"
+                  className="px-4 py-2.5 rounded-xl bg-slate-900 hover:bg-slate-800 dark:bg-emerald-600 dark:hover:bg-emerald-500 text-white text-xs font-semibold shadow-xs hover:shadow transition-all shrink-0 flex items-center justify-center gap-1.5 cursor-pointer keep-white"
                 >
-                  <Send size={13} />
-                  <span>Subscribe</span>
+                  <Send size={13} className="shrink-0 text-white" />
+                  <span className="text-white">Subscribe</span>
                 </button>
               </form>
             )}

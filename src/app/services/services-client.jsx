@@ -167,7 +167,7 @@ export default function ServicesClient() {
 
         <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black tracking-tight text-slate-900 dark:text-white mb-5 leading-[1.15]">
           Developer Tools &amp;{' '}
-          <span className="bg-gradient-to-r from-emerald-600 via-teal-600 to-indigo-600 bg-clip-text text-transparent">
+          <span className="text-emerald-600">
             Web Services
           </span>
         </h1>
@@ -274,7 +274,7 @@ export default function ServicesClient() {
       </section>
 
       {/* FLAGSHIP BANNER */}
-      <section className="max-w-6xl mx-auto mb-16 p-8 md:p-12 rounded-3xl bg-gradient-to-br from-slate-950 via-slate-900 to-emerald-950 text-white shadow-xl flex flex-col md:flex-row items-start md:items-center justify-between gap-8 border border-white/10">
+      <section className="max-w-6xl mx-auto mb-16 p-8 md:p-12 rounded-3xl bg-slate-900 dark:bg-[#0c1018] text-white shadow-xs flex flex-col md:flex-row items-start md:items-center justify-between gap-8 border border-slate-800 dark:border-white/10">
         <div className="max-w-2xl">
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-500/20 border border-emerald-400/30 text-emerald-300 text-xs font-bold mb-4">
             <Zap size={14} />

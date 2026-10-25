@@ -86,7 +86,7 @@ export default function Footer() {
           {/* Col 1: Brand & Trust Guarantee (Span 2) */}
           <div className="lg:col-span-2 space-y-4">
             <Link href="/" className="flex items-center gap-2.5 group">
-              <div className="w-9 h-9 rounded-xl overflow-hidden border border-emerald-500/30 bg-gradient-to-br from-emerald-500 to-teal-700 p-0.5 flex items-center justify-center shrink-0 shadow-xs group-hover:scale-105 transition-transform">
+              <div className="w-9 h-9 rounded-xl overflow-hidden border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 p-0.5 flex items-center justify-center shrink-0 shadow-xs group-hover:border-emerald-500 transition-colors">
                 <img src="/logo.png" alt="Revoxera Logo" className="w-full h-full object-cover rounded-lg" />
               </div>
               <span className="text-lg font-black tracking-tight text-slate-900 dark:text-white">

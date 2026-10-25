@@ -129,23 +129,25 @@ export default function FormatterPage({ pageType = 'formatter' }) {
     { name: 'JSON Compare', href: '/json-compare' }
   ];
 
-  // Controls JSX (Beautifier Hub) — compact for mobile horizontal strip
+  // Controls JSX (Action Toolbar)
   const controls = (
-    <>
+    <div className="flex flex-row xl:flex-col items-center gap-2 p-2 bg-slate-100/80 dark:bg-white/5 border border-slate-200 dark:border-white/10 rounded-2xl shrink-0">
       {/* Indentation group */}
-      <div className="flex xl:flex-col items-center gap-1 bg-white/5 border border-white/10 rounded-2xl p-2 shrink-0">
-        <span className="text-[7px] font-black text-slate-500 tracking-widest uppercase hidden xl:block mb-1">Indent</span>
+      <div className="flex xl:flex-col items-center gap-1 bg-white dark:bg-black/30 border border-slate-200 dark:border-white/10 rounded-xl p-1 shrink-0">
+        <span className="text-[9px] font-bold text-slate-500 uppercase hidden xl:block text-center py-0.5">Indent</span>
         {['2', '4', 'tab'].map(size => (
           <button
             key={size}
             onClick={() => setIndentSize(size)}
-            className={`px-3 py-2 rounded-xl text-[9px] font-black uppercase transition-all whitespace-nowrap shrink-0 ${
-              indentSize === size ? 'bg-primary text-black' : 'text-slate-400 hover:text-white hover:bg-white/5'
+            className={`px-2.5 py-1.5 rounded-lg text-xs font-bold transition-all whitespace-nowrap cursor-pointer shrink-0 ${
+              indentSize === size 
+                ? 'bg-emerald-600 text-white shadow-xs' 
+                : 'text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-white/5'
             }`}
             title={size === 'tab' ? 'Tab indentation' : `${size} spaces`}
             suppressHydrationWarning={true}
           >
-            {size === 'tab' ? 'TAB' : `${size}SP`}
+            {size === 'tab' ? 'Tab' : `${size} SP`}
           </button>
         ))}
       </div>
@@ -153,67 +155,70 @@ export default function FormatterPage({ pageType = 'formatter' }) {
       {/* Beautify button */}
       <button
         onClick={() => handleFormat(jsonInput, indentSize)}
-        title="Beautify JSON"
-        className="p-3.5 xl:p-5 rounded-2xl xl:rounded-3xl bg-primary text-black shadow-[0_0_20px_rgba(255,95,0,0.3)] hover:scale-105 active:scale-95 transition-all shrink-0"
+        title="Format JSON"
+        className="flex items-center gap-1.5 px-3.5 py-2.5 xl:w-full justify-center rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-xs shadow-xs hover:shadow transition-all shrink-0 cursor-pointer"
         suppressHydrationWarning={true}
       >
-        <Maximize2 size={18} />
+        <Maximize2 size={15} />
+        <span>Format</span>
       </button>
 
       {/* Minify button */}
       <button
         onClick={handleMinify}
         title="Minify JSON"
-        className="p-3.5 xl:p-5 rounded-2xl xl:rounded-3xl bg-white/5 border border-white/10 text-white hover:bg-white/10 active:scale-95 transition-all shrink-0"
+        className="flex items-center gap-1.5 px-3 py-2.5 xl:w-full justify-center rounded-xl bg-white dark:bg-white/5 border border-slate-200 dark:border-white/10 text-slate-700 dark:text-slate-200 hover:bg-slate-50 dark:hover:bg-white/10 font-semibold text-xs shadow-xs transition-all shrink-0 cursor-pointer"
         suppressHydrationWarning={true}
       >
-        <Minimize2 size={18} />
+        <Minimize2 size={15} />
+        <span>Minify</span>
       </button>
 
       {/* TypeScript button */}
       <button
         onClick={handleToTS}
         title="Generate TypeScript interfaces"
-        className="p-3.5 xl:p-5 rounded-2xl xl:rounded-3xl bg-white/5 border border-white/10 text-accent hover:border-accent hover:bg-accent/5 active:scale-95 transition-all shrink-0"
+        className="flex items-center gap-1.5 px-3 py-2.5 xl:w-full justify-center rounded-xl bg-white dark:bg-white/5 border border-slate-200 dark:border-white/10 text-slate-700 dark:text-slate-200 hover:bg-slate-50 dark:hover:bg-white/10 font-semibold text-xs shadow-xs transition-all shrink-0 cursor-pointer"
         suppressHydrationWarning={true}
       >
-        <FileJson size={18} />
+        <FileJson size={15} className="text-emerald-600 dark:text-emerald-400" />
+        <span>TypeScript</span>
       </button>
 
       {/* CSV button */}
       <button
         onClick={handleToCSV}
         title="Export to CSV"
-        className="p-3.5 xl:p-5 rounded-2xl xl:rounded-3xl bg-white/5 border border-white/10 text-success hover:border-success hover:bg-success/5 active:scale-95 transition-all shrink-0"
+        className="flex items-center gap-1.5 px-3 py-2.5 xl:w-full justify-center rounded-xl bg-white dark:bg-white/5 border border-slate-200 dark:border-white/10 text-slate-700 dark:text-slate-200 hover:bg-slate-50 dark:hover:bg-white/10 font-semibold text-xs shadow-xs transition-all shrink-0 cursor-pointer"
         suppressHydrationWarning={true}
       >
-        <Table size={18} />
+        <Table size={15} className="text-emerald-600 dark:text-emerald-400" />
+        <span>CSV</span>
       </button>
-    </>
+    </div>
   );
-
 
   // Custom Output Area depending on active tab
   const customOutputArea = activeTab === 'tree' ? (
     <div className="h-full flex flex-col">
       <div className="flex flex-col md:flex-row gap-3 mb-4 shrink-0">
         <div className="relative flex-1 group">
-          <Search className="absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-500 group-focus-within:text-primary transition-colors" size={14} />
+          <Search className="absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400 group-focus-within:text-emerald-600 transition-colors" size={14} />
           <input
             type="text"
             placeholder="Search nodes..."
-            className="w-full bg-white/5 border border-white/10 rounded-xl py-2.5 pl-10 pr-4 text-xs font-mono outline-none focus:border-primary/50 transition-all focus:bg-white/10 text-white"
+            className="w-full bg-slate-50 dark:bg-white/5 border border-slate-200 dark:border-white/10 rounded-xl py-2 pl-9 pr-3 text-xs font-mono outline-none focus:border-emerald-500 focus:bg-white dark:focus:bg-black transition-all text-slate-900 dark:text-white"
             value={filter}
             onChange={(e) => setFilter(e.target.value)}
             suppressHydrationWarning={true}
           />
         </div>
         <div className="relative flex-1 group">
-          <Command className="absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-500 group-focus-within:text-accent transition-colors" size={14} />
+          <Command className="absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400 group-focus-within:text-emerald-600 transition-colors" size={14} />
           <input
             type="text"
             placeholder="JSONPath (e.g. $.items[0])"
-            className="w-full bg-white/5 border border-white/10 rounded-xl py-2.5 pl-10 pr-4 text-xs font-mono outline-none focus:border-accent/50 transition-all focus:bg-white/10 text-white"
+            className="w-full bg-slate-50 dark:bg-white/5 border border-slate-200 dark:border-white/10 rounded-xl py-2 pl-9 pr-3 text-xs font-mono outline-none focus:border-emerald-500 focus:bg-white dark:focus:bg-black transition-all text-slate-900 dark:text-white"
             value={jsonPath}
             onChange={(e) => setJsonPath(e.target.value)}
             onKeyDown={(e) => e.key === 'Enter' && handleEvaluatePath()}

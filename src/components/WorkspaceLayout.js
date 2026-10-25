@@ -244,9 +244,7 @@ export default function WorkspaceLayout({
   };
 
   return (
-    <div className="min-h-screen cyber-grid pb-20 relative overflow-x-hidden">
-      <div className="scanline" />
-
+    <div className="min-h-screen pb-20 relative overflow-x-hidden bg-background text-foreground">
       {/* Structured SEO schemas dynamically injected */}
       {schema && (
         <script
@@ -261,35 +259,35 @@ export default function WorkspaceLayout({
           <div className="fixed inset-0 z-[300] flex items-center justify-center p-4">
             <motion.div 
               initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
-              className="fixed inset-0 bg-black/80 backdrop-blur-md"
+              className="fixed inset-0 bg-slate-900/60 dark:bg-black/80 backdrop-blur-xs"
             />
             <motion.div
               initial={{ scale: 0.95, opacity: 0 }} animate={{ scale: 1, opacity: 1 }} exit={{ scale: 0.95, opacity: 0 }}
-              className="glass-panel w-full max-w-lg rounded-[30px] border border-white/10 p-8 relative z-[301] shadow-[0_0_50px_rgba(239,68,68,0.2)]"
+              className="w-full max-w-lg rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-[#0c1018] p-6 md:p-8 relative z-[301] shadow-xl"
             >
-              <h3 className="text-xl font-bold text-red-400 mb-4 flex items-center gap-2">
-                ⚠️ [PERFORMANCE_NOTICE] LARGE PAYLOAD
+              <h3 className="text-lg font-bold text-slate-900 dark:text-white mb-3 flex items-center gap-2">
+                <span>⚠️ Large Payload Detected</span>
               </h3>
-              <p className="text-sm text-slate-300 leading-relaxed mb-6 font-light">
-                The pasted content is large (~{(inputValue.length / (1024 * 1024)).toFixed(2)} MB). Rendering full syntax styling and expandable trees for large structures can overload browser threads.
+              <p className="text-xs md:text-sm text-slate-600 dark:text-slate-400 leading-relaxed mb-6">
+                The pasted content is large (~{(inputValue.length / (1024 * 1024)).toFixed(2)} MB). Rendering full syntax formatting and expandable tree nodes for massive payloads may cause high browser memory usage.
               </p>
-              <div className="flex gap-4">
+              <div className="flex gap-3">
                 <button 
                   onClick={() => setLargeFileWarning(false)}
-                  className="flex-1 py-3 rounded-xl bg-red-500 hover:bg-red-600 text-black text-xs font-black tracking-widest uppercase transition-all"
+                  className="flex-1 py-2.5 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-bold transition-all shadow-xs cursor-pointer"
                   suppressHydrationWarning={true}
                 >
-                  Confirm & Format
+                  Continue &amp; Format
                 </button>
                 <button
                   onClick={() => {
                     setLargeFileWarning(false);
-                    onInputChange(inputValue.slice(0, 1024 * 500)); // Truncate to 500KB
+                    onInputChange(inputValue.slice(0, 1024 * 500));
                   }}
-                  className="flex-1 py-3 rounded-xl bg-white/5 hover:bg-white/10 text-white text-xs font-black tracking-widest uppercase border border-white/10 transition-all"
+                  className="flex-1 py-2.5 rounded-xl bg-slate-100 hover:bg-slate-200 dark:bg-white/5 dark:hover:bg-white/10 text-slate-700 dark:text-slate-300 text-xs font-semibold border border-slate-200 dark:border-white/10 transition-all cursor-pointer"
                   suppressHydrationWarning={true}
                 >
-                  Truncate File (Fast)
+                  Truncate to 500KB
                 </button>
               </div>
             </motion.div>
@@ -297,44 +295,39 @@ export default function WorkspaceLayout({
         )}
       </AnimatePresence>
 
-      <div className="container mx-auto px-4 md:px-6 animate-fade-in max-w-[1600px] relative z-10 pt-8 overflow-x-hidden">
+      <div className="container mx-auto px-4 md:px-6 max-w-[1600px] relative z-10 pt-6 overflow-x-hidden">
         
         {/* Breadcrumb Navigation — hidden on home page */}
         {!isHomePage && (
-          <nav className="mb-6 text-[10px] font-black tracking-[0.2em] text-slate-500 uppercase flex items-center gap-2">
-            <Link href="/" className="hover:text-primary transition-colors">HOME</Link>
+          <nav className="mb-6 text-xs font-medium text-slate-500 flex items-center gap-2">
+            <Link href="/" className="hover:text-slate-900 dark:hover:text-white transition-colors">Home</Link>
             <span>/</span>
-            <Link href="/tools" className="hover:text-primary transition-colors">TOOLS</Link>
+            <Link href="/tools" className="hover:text-slate-900 dark:hover:text-white transition-colors">Tools</Link>
             <span>/</span>
-            <span className="text-primary">{title}</span>
+            <span className="text-slate-900 dark:text-white font-bold">{title}</span>
           </nav>
         )}
 
-        {/* Hero Landing Description */}
-        <section className="text-center mb-8 max-w-[1200px] mx-auto">
+        {/* Hero Section */}
+        <section className="text-center mb-8 max-w-[950px] mx-auto pt-2">
           {!isHomePage && (
-            <motion.div
-              initial={{ scale: 0.9, opacity: 0 }} animate={{ scale: 1, opacity: 1 }}
-              className="inline-block mb-4 px-5 py-1.5 rounded-full bg-white/5 border border-white/10 backdrop-blur-xl"
-            >
-              <span className="text-[9px] font-black tracking-[0.3em] text-primary uppercase flex items-center gap-2 justify-center">
-                <Activity size={10} className="text-primary" /> Privacy-First Local Sandbox Core
-              </span>
-            </motion.div>
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-slate-100 dark:bg-white/5 border border-slate-200 dark:border-white/10 text-slate-700 dark:text-slate-300 text-xs font-semibold mb-4">
+              <span className="flex h-2 w-2 rounded-full bg-emerald-500 animate-pulse shrink-0" />
+              <span className="text-emerald-700 dark:text-emerald-400 font-bold">100% Client-Side Privacy</span>
+              <span className="text-slate-300 dark:text-slate-700">•</span>
+              <span>Zero Server Latency</span>
+            </div>
           )}
-          <motion.h1
-            initial={{ y: 20, opacity: 0 }} animate={{ y: 0, opacity: 1 }}
-            className="text-3xl md:text-5xl font-black tracking-tighter mb-4 leading-none text-white uppercase"
-          >
+          <h1 className="text-3xl sm:text-4xl md:text-5xl font-black tracking-tight text-slate-900 dark:text-white mb-3">
             {h1}
-          </motion.h1>
-          <p className="text-sm md:text-base text-slate-400 font-light tracking-wide max-w-2xl mx-auto leading-relaxed">
+          </h1>
+          <p className="text-sm md:text-base text-slate-600 dark:text-slate-400 leading-relaxed max-w-2xl mx-auto">
             {intro}
           </p>
         </section>
 
-        {/* Dynamic Workspace Section */}
-        <section className="relative z-10 flex flex-col xl:grid xl:grid-cols-[1fr_auto_1fr] gap-4 xl:gap-8 items-stretch mb-16">
+        {/* Main Workspace Section */}
+        <section className="relative z-10 flex flex-col xl:grid xl:grid-cols-[1fr_auto_1fr] gap-4 xl:gap-6 items-stretch mb-16">
           
           {/* LEFT INPUT COLUMN */}
           <div 
@@ -342,60 +335,62 @@ export default function WorkspaceLayout({
             onDragOver={handleDrag}
             onDragLeave={handleDrag}
             onDrop={handleDrop}
-            className={`glass-panel rounded-[28px] md:rounded-[40px] overflow-hidden flex flex-col h-[380px] md:h-[600px] xl:h-[750px] relative group border shadow-2xl transition-all min-w-0 ${
-              dragActive ? 'border-primary bg-primary/5 shadow-[0_0_30px_rgba(56,189,248,0.2)]' : 'border-white/10'
+            className={`bg-white dark:bg-[#0c1018] rounded-2xl overflow-hidden flex flex-col h-[380px] md:h-[580px] xl:h-[680px] relative group border shadow-xs transition-all min-w-0 ${
+              dragActive ? 'border-emerald-500 ring-2 ring-emerald-500/20' : 'border-slate-200 dark:border-slate-800'
             }`}
           >
-            <div className="p-3 md:p-6 flex justify-between items-center border-b border-white/10 bg-white/5 gap-2">
-              <div className="flex items-center gap-2 md:gap-4 min-w-0">
-                <div className="hidden sm:flex gap-1.5 shrink-0">
-                  <div className="w-3 h-3 rounded-full bg-red-500/50 border border-red-500/20" />
-                  <div className="w-3 h-3 rounded-full bg-yellow-500/50 border border-yellow-500/20" />
-                  <div className="w-3 h-3 rounded-full bg-green-500/50 border border-green-500/20" />
-                </div>
-                <span className="text-[9px] md:text-[10px] font-black tracking-[0.2em] md:tracking-[0.3em] text-primary/80 uppercase truncate max-w-[80px] sm:max-w-[120px] md:max-w-none">
-                  {inputLabel}
+            <div className="p-3 sm:p-4 flex justify-between items-center border-b border-slate-200 dark:border-slate-800 bg-slate-50/70 dark:bg-white/[0.02] gap-2 shrink-0">
+              <div className="flex items-center gap-2 sm:gap-3 min-w-0">
+                <span className="text-xs font-bold text-slate-800 dark:text-slate-200 truncate">
+                  {inputLabel || 'Input JSON'}
                 </span>
                 <button
                   onClick={handleLoadSample}
-                  className="hidden sm:block px-2 py-1 rounded bg-primary/10 hover:bg-primary/20 text-primary text-[8px] font-black tracking-widest uppercase transition-all border border-primary/20 hover:scale-105 shrink-0"
+                  className="px-2.5 py-1 rounded-lg bg-emerald-50 dark:bg-emerald-950/50 hover:bg-emerald-100 text-emerald-700 dark:text-emerald-300 text-xs font-semibold transition-colors border border-emerald-200 dark:border-emerald-800 shrink-0 cursor-pointer"
                   title="Load dummy JSON for testing"
                   suppressHydrationWarning={true}
                 >
                   Sample
                 </button>
                 {isLargeFile && (
-                  <span className="text-[8px] font-black tracking-widest bg-amber-500/10 text-amber-400 px-2 py-0.5 rounded-full border border-amber-500/20 uppercase">
-                    LARGE PAYLOAD
+                  <span className="text-[10px] font-bold bg-amber-50 text-amber-700 dark:bg-amber-950/50 dark:text-amber-300 px-2 py-0.5 rounded-full border border-amber-200 dark:border-amber-800">
+                    Large Payload
                   </span>
                 )}
               </div>
-              <div className="flex gap-1 md:gap-2 shrink-0">
+              <div className="flex items-center gap-1 sm:gap-1.5 shrink-0">
                 <button 
                   onClick={() => setHistoryOpen(!historyOpen)} 
                   title="View past sessions history"
-                  className={`p-2 md:p-3 rounded-xl transition-all shrink-0 ${historyOpen ? 'bg-primary text-black' : 'bg-white/5 hover:bg-white/10 text-slate-400 hover:text-primary'}`}
+                  className={`p-2 rounded-lg transition-colors shrink-0 cursor-pointer text-xs font-semibold flex items-center gap-1 ${
+                    historyOpen 
+                      ? 'bg-slate-900 text-white dark:bg-white dark:text-slate-900' 
+                      : 'bg-white dark:bg-white/5 border border-slate-200 dark:border-white/10 text-slate-600 dark:text-slate-300 hover:bg-slate-50'
+                  }`}
                   suppressHydrationWarning={true}
                 >
-                  <History size={15} />
+                  <History size={14} />
+                  <span className="hidden md:inline">History</span>
                 </button>
                 {onRepair && (
                   <button 
                     onClick={onRepair} 
                     title="Auto-repair code errors"
-                    className="p-2 md:p-3 rounded-xl bg-white/5 hover:bg-white/10 text-slate-400 hover:text-accent transition-all shrink-0"
+                    className="p-2 rounded-lg bg-white dark:bg-white/5 border border-slate-200 dark:border-white/10 text-slate-600 dark:text-slate-300 hover:text-emerald-600 hover:bg-slate-50 transition-colors shrink-0 cursor-pointer text-xs font-semibold flex items-center gap-1"
                     suppressHydrationWarning={true}
                   >
-                    <Wand2 size={15} />
+                    <Wand2 size={14} />
+                    <span className="hidden md:inline">Repair</span>
                   </button>
                 )}
                 <button 
                   onClick={() => fileInputRef.current?.click()} 
-                  title="Import configuration file"
-                  className="hidden sm:block p-2 md:p-3 rounded-xl bg-white/5 hover:bg-white/10 text-slate-400 hover:text-primary transition-all shrink-0"
+                  title="Upload JSON file"
+                  className="p-2 rounded-lg bg-white dark:bg-white/5 border border-slate-200 dark:border-white/10 text-slate-600 dark:text-slate-300 hover:text-slate-900 hover:bg-slate-50 transition-colors shrink-0 cursor-pointer text-xs font-semibold flex items-center gap-1"
                   suppressHydrationWarning={true}
                 >
-                  <Upload size={15} />
+                  <Upload size={14} />
+                  <span className="hidden md:inline">Upload</span>
                 </button>
                 <input 
                   type="file" 
@@ -406,20 +401,22 @@ export default function WorkspaceLayout({
                 />
                 <button 
                   onClick={() => handleCopy('input')} 
-                  title="Copy original code"
-                  className="p-2 md:p-3 rounded-xl bg-white/5 hover:bg-white/10 text-slate-400 hover:text-primary transition-all shrink-0"
+                  title="Copy input text"
+                  className="p-2 rounded-lg bg-white dark:bg-white/5 border border-slate-200 dark:border-white/10 text-slate-600 dark:text-slate-300 hover:text-slate-900 hover:bg-slate-50 transition-colors shrink-0 cursor-pointer text-xs font-semibold flex items-center gap-1"
                   suppressHydrationWarning={true}
                 >
-                  {copied.input ? <Check size={15} className="text-success" /> : <Copy size={15} />}
+                  {copied.input ? <Check size={14} className="text-emerald-600" /> : <Copy size={14} />}
+                  <span className="hidden md:inline">{copied.input ? 'Copied' : 'Copy'}</span>
                 </button>
                 {onClear && (
                   <button 
                     onClick={onClear} 
                     title="Clear panel input"
-                    className="p-2 md:p-3 rounded-xl bg-white/5 hover:bg-red-500/20 text-slate-400 hover:text-red-400 transition-all shrink-0"
+                    className="p-2 rounded-lg bg-white dark:bg-white/5 border border-slate-200 dark:border-white/10 text-slate-600 dark:text-slate-300 hover:text-rose-600 hover:bg-rose-50 dark:hover:bg-rose-950/30 transition-colors shrink-0 cursor-pointer text-xs font-semibold flex items-center gap-1"
                     suppressHydrationWarning={true}
                   >
-                    <Trash2 size={15} />
+                    <Trash2 size={14} />
+                    <span className="hidden md:inline">Clear</span>
                   </button>
                 )}
               </div>
@@ -433,11 +430,11 @@ export default function WorkspaceLayout({
                   animate={{ x: 0 }}
                   exit={{ x: '-100%' }}
                   transition={{ type: 'spring', damping: 25, stiffness: 200 }}
-                  className="absolute inset-0 bg-black/95 backdrop-blur-md z-30 flex flex-col border-r border-white/10"
+                  className="absolute inset-0 bg-white dark:bg-[#0c1018] z-30 flex flex-col border-r border-slate-200 dark:border-slate-800"
                 >
-                  <div className="p-6 flex justify-between items-center border-b border-white/10 bg-white/5">
-                    <span className="text-xs font-black tracking-[0.2em] text-white uppercase flex items-center gap-2">
-                      <History size={14} className="text-primary animate-pulse" /> PAST SESSIONS
+                  <div className="p-4 flex justify-between items-center border-b border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-white/[0.02]">
+                    <span className="text-xs font-bold text-slate-900 dark:text-white flex items-center gap-2">
+                      <History size={14} className="text-emerald-600" /> Past Sessions
                     </span>
                     <div className="flex gap-2">
                       {history.length > 0 && (
@@ -446,7 +443,7 @@ export default function WorkspaceLayout({
                             localStorage.setItem('revoxera_history', '[]');
                             setHistory([]);
                           }}
-                          className="px-3 py-1.5 rounded-lg bg-red-500/10 hover:bg-red-500/20 text-red-400 text-[9px] font-black tracking-widest uppercase transition-all border border-red-500/20"
+                          className="px-2.5 py-1 rounded-lg bg-rose-50 hover:bg-rose-100 text-rose-700 dark:bg-rose-950/40 dark:text-rose-300 text-xs font-semibold transition-colors border border-rose-200 dark:border-rose-800 cursor-pointer"
                           suppressHydrationWarning={true}
                         >
                           Clear All
@@ -454,19 +451,19 @@ export default function WorkspaceLayout({
                       )}
                       <button
                         onClick={() => setHistoryOpen(false)}
-                        className="p-1.5 rounded-lg bg-white/5 hover:bg-white/10 text-slate-400 hover:text-white transition-all text-xs"
+                        className="p-1 rounded-lg hover:bg-slate-200 dark:hover:bg-white/10 text-slate-500 hover:text-slate-900 dark:hover:text-white text-xs cursor-pointer"
                         suppressHydrationWarning={true}
                       >
                         ✕
                       </button>
                     </div>
                   </div>
-                  <div className="flex-1 overflow-y-auto p-4 space-y-3 custom-scrollbar">
+                  <div className="flex-1 overflow-y-auto p-4 space-y-2.5 custom-scrollbar">
                     {history.length === 0 ? (
                       <div className="h-full flex flex-col items-center justify-center text-center p-6">
-                        <span className="text-slate-600 font-mono text-xs uppercase tracking-widest mb-2">No history recorded</span>
-                        <p className="text-[10px] text-slate-500 font-light leading-relaxed max-w-[200px]">
-                          Format or process data, and your last 15 inputs will appear here automatically.
+                        <span className="text-slate-400 font-mono text-xs mb-1">No history recorded yet</span>
+                        <p className="text-xs text-slate-500 leading-relaxed max-w-[220px]">
+                          Format or process your JSON, and your recent inputs will appear here.
                         </p>
                       </div>
                     ) : (
@@ -477,17 +474,17 @@ export default function WorkspaceLayout({
                             onInputChange(item.input);
                             setHistoryOpen(false);
                           }}
-                          className="p-4 rounded-2xl bg-white/5 border border-white/5 hover:border-primary/30 hover:bg-white/[0.08] cursor-pointer transition-all group relative"
+                          className="p-3.5 rounded-xl bg-slate-50 dark:bg-white/[0.03] border border-slate-200 dark:border-slate-800 hover:border-emerald-500 cursor-pointer transition-all group"
                         >
-                          <div className="flex justify-between items-center mb-2">
-                            <span className="text-[9px] font-black tracking-wider text-primary uppercase">
+                          <div className="flex justify-between items-center mb-1.5">
+                            <span className="text-xs font-bold text-emerald-600 dark:text-emerald-400">
                               {item.tool}
                             </span>
                             <div className="flex items-center gap-2">
-                              <span className="text-[9px] text-slate-500 font-mono">
+                              <span className="text-[11px] text-slate-400 font-mono">
                                 {item.timestamp}
                               </span>
-                              <span className="text-[8px] px-1.5 py-0.5 rounded bg-white/5 text-slate-400 font-mono">
+                              <span className="text-[10px] px-1.5 py-0.2 rounded bg-slate-200 dark:bg-white/10 text-slate-600 dark:text-slate-300 font-mono">
                                 {item.size}
                               </span>
                               <button
@@ -497,14 +494,14 @@ export default function WorkspaceLayout({
                                   localStorage.setItem('revoxera_history', JSON.stringify(updated));
                                   setHistory(updated);
                                 }}
-                                className="text-slate-500 hover:text-red-400 p-1 opacity-0 group-hover:opacity-100 transition-opacity"
+                                className="text-slate-400 hover:text-rose-600 p-0.5 opacity-0 group-hover:opacity-100 transition-opacity"
                                 title="Delete item"
                               >
-                                <Trash2 size={10} />
+                                <Trash2 size={12} />
                               </button>
                             </div>
                           </div>
-                          <div className="text-xs font-mono text-slate-400 line-clamp-2 break-all bg-black/30 p-2 rounded-lg border border-white/5">
+                          <div className="text-xs font-mono text-slate-600 dark:text-slate-300 line-clamp-2 break-all bg-white dark:bg-black/30 p-2 rounded-lg border border-slate-200 dark:border-white/5">
                             {item.snippet}
                           </div>
                         </div>
@@ -516,111 +513,112 @@ export default function WorkspaceLayout({
             </AnimatePresence>
 
             {dragActive && (
-              <div className="absolute inset-0 bg-primary/5 flex flex-col items-center justify-center pointer-events-none z-20 border-2 border-dashed border-primary rounded-[40px] backdrop-blur-sm animate-pulse">
-                <Upload className="w-12 h-12 text-primary mb-2 animate-bounce" />
-                <span className="text-sm font-black tracking-widest text-white uppercase">Drop data file here</span>
+              <div className="absolute inset-0 bg-emerald-500/10 flex flex-col items-center justify-center pointer-events-none z-20 border-2 border-dashed border-emerald-500 rounded-2xl backdrop-blur-xs">
+                <Upload className="w-10 h-10 text-emerald-600 mb-2 animate-bounce" />
+                <span className="text-sm font-bold text-emerald-700 dark:text-emerald-300">Drop data file here</span>
               </div>
             )}
 
             {customInputArea ? customInputArea : (
               <textarea
                 placeholder={inputPlaceholder}
-                className="flex-1 p-8 md:p-10 bg-transparent text-white text-base md:text-lg font-mono outline-none resize-none placeholder:text-white/5 custom-scrollbar selection:bg-primary/20"
+                className="flex-1 p-4 md:p-6 bg-transparent text-slate-900 dark:text-slate-100 text-sm md:text-base font-mono outline-none resize-none placeholder:text-slate-400 dark:placeholder:text-slate-500 custom-scrollbar selection:bg-emerald-500/20"
                 value={inputValue}
                 onChange={(e) => onInputChange(e.target.value)}
               />
             )}
             
             {error && (
-              <motion.div
-                initial={{ y: 20, opacity: 0 }} animate={{ y: 0, opacity: 1 }}
-                className="absolute bottom-6 left-6 right-6 p-5 rounded-2xl bg-red-500/10 border border-red-500/20 backdrop-blur-2xl neon-border z-10"
-              >
-                <p className="text-xs text-red-400 font-mono flex items-start gap-3">
-                  <ShieldCheck size={16} className="animate-pulse mt-0.5 shrink-0" />
-                  <span className="break-all">[SYNTAX_ERR]: {error}</span>
+              <div className="absolute bottom-4 left-4 right-4 p-3.5 rounded-xl bg-rose-50 dark:bg-rose-950/60 border border-rose-200 dark:border-rose-800 z-10 shadow-sm">
+                <p className="text-xs text-rose-700 dark:text-rose-300 font-mono flex items-start gap-2">
+                  <ShieldCheck size={16} className="text-rose-600 shrink-0 mt-0.5" />
+                  <span className="break-all font-semibold">Syntax Error: {error}</span>
                 </p>
-              </motion.div>
+              </div>
             )}
           </div>
 
-          {/* MIDDLE COLUMN CONTROLS — scrollable horizontal strip on mobile, vertical on xl */}
+          {/* MIDDLE COLUMN CONTROLS */}
           <div className="workspace-controls-strip">
             {controls}
           </div>
 
           {/* RIGHT OUTPUT COLUMN */}
-          <div className="glass-panel rounded-[28px] md:rounded-[40px] overflow-hidden flex flex-col h-[380px] md:h-[600px] xl:h-[750px] border border-white/10 shadow-2xl min-w-0">
-            {/* TAB BAR — horizontally scrollable, no wrap */}
-            <div className="flex border-b border-white/10 bg-white/5 shrink-0 overflow-x-auto custom-scrollbar" style={{ scrollbarWidth: 'none' }}>
+          <div className="bg-white dark:bg-[#0c1018] rounded-2xl overflow-hidden flex flex-col h-[380px] md:h-[580px] xl:h-[680px] border border-slate-200 dark:border-slate-800 shadow-xs min-w-0">
+            {/* TAB BAR */}
+            <div className="flex border-b border-slate-200 dark:border-slate-800 bg-slate-50/70 dark:bg-white/[0.02] shrink-0 overflow-x-auto" style={{ scrollbarWidth: 'none' }}>
               {tabs.map((tab) => (
                 <button
                   key={tab}
                   onClick={() => onTabChange(tab)}
-                  className={`shrink-0 px-4 py-3.5 text-[9px] md:text-[10px] font-black tracking-[0.25em] uppercase transition-all relative whitespace-nowrap ${
-                    activeTab === tab ? 'text-primary bg-primary/10' : 'text-slate-400 hover:text-white hover:bg-white/5'
+                  className={`shrink-0 px-4 py-3 text-xs font-bold uppercase tracking-wider transition-colors border-b-2 whitespace-nowrap cursor-pointer ${
+                    activeTab === tab 
+                      ? 'border-emerald-600 text-emerald-600 dark:text-emerald-400 bg-white dark:bg-[#0c1018]' 
+                      : 'border-transparent text-slate-500 hover:text-slate-800 dark:hover:text-slate-200 hover:bg-slate-100/50'
                   }`}
                   suppressHydrationWarning={true}
                 >
                   {tab}
-                  {activeTab === tab && (
-                    <motion.div 
-                      layoutId="tab-underline-workspace" 
-                      className="absolute bottom-1.5 left-1/2 -translate-x-1/2 w-1.5 h-1.5 rounded-full bg-primary" 
-                    />
-                  )}
                 </button>
               ))}
             </div>
 
-            <div className="p-6 md:p-8 flex-1 relative overflow-hidden bg-white/[0.01]">
+            <div className="p-4 md:p-6 flex-1 relative overflow-hidden">
               {customOutputArea ? customOutputArea : (
                 <textarea
                   readOnly
                   placeholder="// Output will align automatically here..."
-                  className="w-full h-full p-6 bg-transparent text-white/90 text-base md:text-lg font-mono outline-none resize-none custom-scrollbar selection:bg-accent/20"
+                  className="w-full h-full p-2 bg-transparent text-slate-900 dark:text-slate-100 text-sm md:text-base font-mono outline-none resize-none custom-scrollbar selection:bg-emerald-500/20"
                   value={outputValue}
                 />
               )}
             </div>
 
-            <div className="p-3 md:p-5 bg-white/5 border-t border-white/10 flex flex-col sm:flex-row justify-between items-center gap-3 shrink-0">
-              <div className="flex flex-wrap gap-3 md:gap-6 text-[9px] font-black tracking-[0.2em] text-slate-500 font-mono uppercase w-full sm:w-auto">
-                <div className="flex flex-col">
-                  <span className="text-primary opacity-50 mb-1">MEM</span> 
-                  <span className="text-white text-[10px]">{(new Blob([outputValue || inputValue]).size / 1024).toFixed(1)} KB</span>
-                </div>
-                <div className="flex flex-col">
-                  <span className="text-accent opacity-50 mb-1">LINES</span> 
-                  <span className="text-white text-[10px]">{finalStats.lines}</span>
-                </div>
+            <div className="p-3 sm:p-4 bg-slate-50/70 dark:bg-white/[0.02] border-t border-slate-200 dark:border-slate-800 flex flex-col sm:flex-row justify-between items-center gap-3 shrink-0">
+              <div className="flex flex-wrap items-center gap-3 sm:gap-4 text-xs font-medium text-slate-500 dark:text-slate-400 font-mono w-full sm:w-auto">
+                <span className="flex items-center gap-1.5">
+                  <span className="text-slate-400">Size:</span>
+                  <strong className="text-slate-800 dark:text-slate-200">{(new Blob([outputValue || inputValue]).size / 1024).toFixed(1)} KB</strong>
+                </span>
+                <span>•</span>
+                <span className="flex items-center gap-1.5">
+                  <span className="text-slate-400">Lines:</span>
+                  <strong className="text-slate-800 dark:text-slate-200">{finalStats.lines}</strong>
+                </span>
                 {finalStats.nodes > 0 && (
-                  <div className="flex flex-col">
-                    <span className="text-success opacity-50 mb-1">NODES</span> 
-                    <span className="text-white text-[10px]">{finalStats.nodes}</span>
-                  </div>
+                  <>
+                    <span>•</span>
+                    <span className="flex items-center gap-1.5">
+                      <span className="text-slate-400">Nodes:</span>
+                      <strong className="text-slate-800 dark:text-slate-200">{finalStats.nodes}</strong>
+                    </span>
+                  </>
                 )}
                 {latency > 0 && (
-                  <div className="flex flex-col">
-                    <span className="text-amber-500 opacity-50 mb-1">MS</span> 
-                    <span className="text-white text-[10px]">{latency}</span>
-                  </div>
+                  <>
+                    <span>•</span>
+                    <span className="flex items-center gap-1.5">
+                      <span className="text-slate-400">Time:</span>
+                      <strong className="text-slate-800 dark:text-slate-200">{latency}ms</strong>
+                    </span>
+                  </>
                 )}
               </div>
               <div className="flex gap-2 w-full sm:w-auto">
                 <button 
                   onClick={handleDownload} 
-                  className="flex-1 sm:flex-none flex items-center justify-center gap-2 px-4 py-3 rounded-2xl bg-white/5 hover:bg-white/10 text-[9px] font-black tracking-widest transition-all border border-white/10 text-white"
+                  className="flex-1 sm:flex-none flex items-center justify-center gap-1.5 px-3.5 py-2 rounded-xl bg-white dark:bg-white/5 hover:bg-slate-100 dark:hover:bg-white/10 text-xs font-bold transition-colors border border-slate-200 dark:border-slate-800 text-slate-700 dark:text-slate-200 shadow-xs cursor-pointer"
                   suppressHydrationWarning={true}
                 >
-                  <Download size={13} /> DL
+                  <Download size={14} /> <span>Download</span>
                 </button>
                 <button 
                   onClick={() => handleCopy('output')} 
-                  className="flex-1 sm:flex-none flex items-center justify-center gap-2 px-4 py-3 rounded-2xl bg-primary text-black text-[9px] font-black tracking-widest transition-all hover:opacity-90 active:scale-95"
+                  className="flex-1 sm:flex-none flex items-center justify-center gap-1.5 px-4 py-2 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-bold transition-all shadow-xs active:scale-95 cursor-pointer"
                   suppressHydrationWarning={true}
                 >
-                  <Copy size={13} /> {copied.output ? 'COPIED' : 'COPY'}
+                  {copied.output ? <Check size={14} /> : <Copy size={14} />}
+                  <span>{copied.output ? 'Copied' : 'Copy'}</span>
                 </button>
               </div>
             </div>
@@ -630,17 +628,17 @@ export default function WorkspaceLayout({
         {/* SEO FEATURES SECTION */}
         {features.length > 0 && (
           <section className="mb-16">
-            <h2 className="text-xl md:text-2xl font-black text-white mb-6 uppercase tracking-tight font-mono">
-              Key Features & Functions
+            <h2 className="text-2xl font-bold text-slate-900 dark:text-white mb-6 tracking-tight">
+              Key Features
             </h2>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
               {features.map((feat, index) => (
-                <div key={index} className="glass-panel rounded-3xl p-6 border border-white/5 hover:border-primary/20 transition-all duration-300">
-                  <div className="w-8 h-8 rounded-lg bg-primary/10 border border-primary/20 flex items-center justify-center text-primary mb-4">
-                    <ShieldCheck size={16} />
+                <div key={index} className="bg-white dark:bg-[#0c1018] rounded-2xl p-6 border border-slate-200 dark:border-slate-800 shadow-xs">
+                  <div className="w-9 h-9 rounded-xl bg-emerald-50 dark:bg-emerald-950/50 text-emerald-600 flex items-center justify-center mb-4">
+                    <ShieldCheck size={18} />
                   </div>
-                  <h3 className="text-sm font-bold text-white mb-2 uppercase tracking-wide">{feat.title}</h3>
-                  <p className="text-xs text-slate-400 leading-relaxed font-light">{feat.desc}</p>
+                  <h3 className="text-sm font-bold text-slate-900 dark:text-white mb-2">{feat.title}</h3>
+                  <p className="text-xs text-slate-600 dark:text-slate-400 leading-relaxed">{feat.desc}</p>
                 </div>
               ))}
             </div>
@@ -650,34 +648,27 @@ export default function WorkspaceLayout({
         {/* SEO FAQ SECTION */}
         {faq.length > 0 && (
           <section className="mb-16 max-w-4xl">
-            <h2 className="text-xl md:text-2xl font-black text-white mb-6 uppercase tracking-tight font-mono">
+            <h2 className="text-2xl font-bold text-slate-900 dark:text-white mb-6 tracking-tight">
               Frequently Asked Questions
             </h2>
-            <div className="space-y-4">
+            <div className="space-y-3">
               {faq.map((item, idx) => {
                 const isOpen = !!openFaq[idx];
                 return (
-                  <div key={idx} className="glass-panel rounded-2xl border border-white/5 overflow-hidden">
+                  <div key={idx} className="bg-white dark:bg-[#0c1018] rounded-2xl border border-slate-200 dark:border-slate-800 overflow-hidden shadow-xs">
                     <button
                       onClick={() => toggleFaq(idx)}
-                      className="w-full p-5 flex justify-between items-center text-left text-xs font-bold text-slate-200 hover:text-white uppercase tracking-wider transition-colors bg-white/[0.01]"
+                      className="w-full p-4 sm:p-5 flex justify-between items-center text-left text-xs sm:text-sm font-bold text-slate-900 dark:text-white transition-colors cursor-pointer"
                       suppressHydrationWarning={true}
                     >
                       <span>{item.q}</span>
-                      {isOpen ? <ChevronRight size={14} className="rotate-90 text-primary transition-transform" /> : <ChevronRight size={14} className="text-slate-400 transition-transform" />}
+                      <ChevronRight size={16} className={`text-slate-400 transition-transform ${isOpen ? 'rotate-90 text-emerald-600' : ''}`} />
                     </button>
-                    <AnimatePresence>
-                      {isOpen && (
-                        <motion.div
-                          initial={{ height: 0 }} animate={{ height: 'auto' }} exit={{ height: 0 }}
-                          className="overflow-hidden bg-black/25"
-                        >
-                          <p className="p-5 text-xs text-slate-400 leading-relaxed border-t border-white/5 font-light">
-                            {item.a}
-                          </p>
-                        </motion.div>
-                      )}
-                    </AnimatePresence>
+                    {isOpen && (
+                      <div className="px-4 pb-4 sm:px-5 sm:pb-5 text-xs text-slate-600 dark:text-slate-400 leading-relaxed border-t border-slate-100 dark:border-slate-800 pt-3">
+                        {item.a}
+                      </div>
+                    )}
                   </div>
                 );
               })}
@@ -687,16 +678,16 @@ export default function WorkspaceLayout({
 
         {/* INTERNAL RELATED TOOLS SECTION */}
         {relatedTools.length > 0 && (
-          <section className="border-t border-white/5 pt-12">
-            <h2 className="text-xs font-black tracking-widest text-slate-500 uppercase mb-6">Related Developer Utilities</h2>
-            <div className="flex flex-wrap gap-4">
+          <section className="border-t border-slate-200 dark:border-slate-800 pt-10">
+            <h2 className="text-xs font-bold uppercase tracking-wider text-slate-500 mb-4">Related Developer Utilities</h2>
+            <div className="flex flex-wrap gap-2.5">
               {relatedTools.map((t, idx) => (
                 <Link
                   key={idx}
                   href={t.href}
-                  className="px-5 py-3 rounded-xl bg-white/5 hover:bg-white/10 border border-white/5 hover:border-primary/20 text-xs font-semibold text-slate-300 hover:text-white transition-all flex items-center gap-2"
+                  className="px-4 py-2 rounded-xl bg-white dark:bg-white/5 hover:bg-slate-50 dark:hover:bg-white/10 border border-slate-200 dark:border-slate-800 text-xs font-semibold text-slate-700 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white transition-colors flex items-center gap-1.5 shadow-xs"
                 >
-                  <span>{t.name}</span> <ArrowRight size={12} className="text-primary" />
+                  <span>{t.name}</span> <ArrowRight size={12} className="text-slate-400" />
                 </Link>
               ))}
             </div>

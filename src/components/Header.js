@@ -149,7 +149,7 @@ export default function Header() {
           {/* LOGO */}
           <Link href="/" className="flex items-center gap-3 group shrink-0">
             <div className="relative">
-              <div className="w-10 h-10 rounded-xl overflow-hidden border border-emerald-500/20 bg-gradient-to-br from-emerald-500 to-teal-700 p-0.5 flex items-center justify-center shrink-0 shadow-md shadow-emerald-500/10 group-hover:scale-105 group-hover:shadow-emerald-500/20 transition-all duration-300">
+              <div className="w-10 h-10 rounded-xl overflow-hidden border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 p-0.5 flex items-center justify-center shrink-0 shadow-xs group-hover:border-emerald-500 transition-colors">
                 <img 
                   src="/logo.png" 
                   alt="Revoxera Logo" 

@@ -135,7 +135,7 @@ const faqSchema = {
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en" suppressHydrationWarning className="light">
+    <html lang="en" suppressHydrationWarning className="light" data-scroll-behavior="smooth">
       <head>
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
@@ -177,10 +177,6 @@ export default function RootLayout({ children }) {
         />
       </head>
       <body suppressHydrationWarning className="bg-background text-foreground min-h-screen flex flex-col w-full overflow-x-hidden selection:bg-emerald-500/30">
-        <div className="bg-blob blob-1"></div>
-        <div className="bg-blob blob-2"></div>
-        <div className="bg-blob blob-3"></div>
-
         <Header />
 
         <main className="main-content flex-grow flex flex-col w-full z-10 relative" id="main-content">

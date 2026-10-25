@@ -76,7 +76,7 @@ export default function Header() {
   const pathname = usePathname();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isPaletteOpen, setIsPaletteOpen] = useState(false);
-  const [theme, setTheme] = useState('dark');
+  const [theme, setTheme] = useState('light');
   const [toolsDropdownOpen, setToolsDropdownOpen] = useState(false);
   const dropdownRef = useRef(null);
 
@@ -94,14 +94,14 @@ export default function Header() {
   // Sync theme on mount
   useEffect(() => {
     try {
-      const savedTheme = localStorage.getItem('revoxera_theme') || 'dark';
+      const savedTheme = localStorage.getItem('revoxera_theme') || 'light';
       setTheme(savedTheme);
-      if (savedTheme === 'light') {
+      if (savedTheme === 'dark') {
+        document.documentElement.classList.add('dark');
+        document.documentElement.classList.remove('light');
+      } else {
         document.documentElement.classList.add('light');
         document.documentElement.classList.remove('dark');
-      } else {
-        document.documentElement.classList.remove('light');
-        document.documentElement.classList.add('dark');
       }
     } catch (e) {}
   }, []);

@@ -3,31 +3,6 @@
 @tailwind utilities;
 
 :root {
-  --background: #030712;
-  --foreground: #f9fafb;
-  --primary: #ff5f00;
-  /* Neon Orange matching logo */
-  --primary-glow: rgba(255, 95, 0, 0.4);
-  --secondary: #0b0f19;
-  --accent: #00df53;
-  /* Neon Green matching logo */
-  --accent-glow: rgba(0, 223, 83, 0.4);
-  --success: #00df53;
-  --glass: rgba(11, 15, 25, 0.7);
-  --glass-border: rgba(255, 255, 255, 0.08);
-  --border: rgba(255, 255, 255, 0.1);
-  --text-muted: #9ca3af;
-  --shadow-premium: 0 0 50px -12px rgba(0, 0, 0, 0.6);
-  --neon-blue: #ff5f00;
-  --neon-purple: #00df53;
-  --cyber-pink: #ff2d00;
-  --footer-bg: #030712;
-  --footer-border: rgba(255, 255, 255, 0.05);
-  --neural-blend: screen;
-  --neural-opacity: 0.035;
-}
-
-.light {
   --background: #f8fafc;
   /* Premium soft off-white background */
   --foreground: #0f172a;
@@ -50,6 +25,54 @@
   --glass-border: rgba(15, 23, 42, 0.08);
   --border: rgba(15, 23, 42, 0.12);
   --text-muted: #475569;
+  --shadow-premium: 0 0 50px -12px rgba(0, 0, 0, 0.1);
+  --neon-blue: #ea580c;
+  --neon-purple: #16a34a;
+  --cyber-pink: #ff2d00;
+}
+
+.light {
+  --background: #f8fafc;
+  --foreground: #0f172a;
+  --primary: #ea580c;
+  --primary-glow: rgba(234, 88, 12, 0.15);
+  --secondary: #f1f5f9;
+  --accent: #16a34a;
+  --accent-glow: rgba(22, 163, 74, 0.15);
+  --success: #16a34a;
+  --glass: #ffffff;
+  --footer-bg: #f1f5f9;
+  --footer-border: rgba(15, 23, 42, 0.08);
+  --neural-blend: multiply;
+  --neural-opacity: 0.018;
+  --glass-border: rgba(15, 23, 42, 0.08);
+  --border: rgba(15, 23, 42, 0.12);
+  --text-muted: #475569;
+}
+
+.dark {
+  --background: #030712;
+  --foreground: #f9fafb;
+  --primary: #ff5f00;
+  /* Neon Orange matching logo */
+  --primary-glow: rgba(255, 95, 0, 0.4);
+  --secondary: #0b0f19;
+  --accent: #00df53;
+  /* Neon Green matching logo */
+  --accent-glow: rgba(0, 223, 83, 0.4);
+  --success: #00df53;
+  --glass: rgba(11, 15, 25, 0.7);
+  --glass-border: rgba(255, 255, 255, 0.08);
+  --border: rgba(255, 255, 255, 0.1);
+  --text-muted: #9ca3af;
+  --shadow-premium: 0 0 50px -12px rgba(0, 0, 0, 0.6);
+  --neon-blue: #ff5f00;
+  --neon-purple: #00df53;
+  --cyber-pink: #ff2d00;
+  --footer-bg: #030712;
+  --footer-border: rgba(255, 255, 255, 0.05);
+  --neural-blend: screen;
+  --neural-opacity: 0.035;
 }
 
 * {

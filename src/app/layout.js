@@ -135,7 +135,7 @@ const faqSchema = {
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en" suppressHydrationWarning>
+    <html lang="en" suppressHydrationWarning className="light">
       <head>
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
@@ -146,13 +146,13 @@ export default function RootLayout({ children }) {
             __html: `
               (function() {
                 try {
-                  const savedTheme = localStorage.getItem('revoxera_theme') || 'dark';
-                  if (savedTheme === 'light') {
+                  const savedTheme = localStorage.getItem('revoxera_theme') || 'light';
+                  if (savedTheme === 'dark') {
+                    document.documentElement.classList.add('dark');
+                    document.documentElement.classList.remove('light');
+                  } else {
                     document.documentElement.classList.add('light');
                     document.documentElement.classList.remove('dark');
-                  } else {
-                    document.documentElement.classList.remove('light');
-                    document.documentElement.classList.add('dark');
                   }
                 } catch (e) {}
               })();
